@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+<link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="~/Content/fontawesome-free-5.14.0-web/css/all.css">
+<meta charset="UTF-8">
+<meta name="viewport" topic="width=device-width, initial-scale=1.0">
+<title>DLDK TRIP | Trang chủ</title>
+<link rel="icon" href="http://example.com/favicon.png">
+
+<section>
+    @Html.Partial("~/Views/Shared/header.cshtml")
+    <div class="content-header">
+        <h1>Dream</h1>
+        <h1>Trip</h1>
+    </div>
+</section>
+
+<div class="container" style="width: 100%; height: 400px;background: #fff;">
+    <div class="content">
+        <h1>Chào mừng bạn đến với chúng tôi</h1>
+        <h4>Hãy khám phá giấc mơ du lịch của bạn </h4>
+        <p> Và nói cho chúng tôi biết trải nghiệm của bạn</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="title-test">
+        <video autoplay loop muted plays-inline id="backvideo">
+            <source src="~/Content/image/section1.mp4" type="video/mp4">
+        </video>
+        <h3 class="section">Địa điểm <span>không thể bỏ qua</span></h3>
+    </div>
+    @Html.Action("List_Topic","Home")
+</div>
+<div class="container">
+    <div class="wrapper">
+        <h4>“Một khi bị nhiễm niềm đam mê du lịch, chẳng có phương thuốc nào có thể hóa giải, và tôi biết rằng tôi sẽ hạnh phúc khi có căn bệnh này cho đến hết cuộc đời.”</h4>
+    </div>
+</div>
+<div class="container" style="background: rgb(206, 242, 245);">
+    <div class="title3">
+        <h2>HOT</h2>
+        <h3>POST</h3>
+    </div>
+    @Html.Action("HotBaiViet", "Home")
+</div>
+
+
+<div class="container">
+    @Html.Action("HotAccount","Home")
+</div>
+
+
+@Html.Partial("~/Views/Shared/footer.cshtml")

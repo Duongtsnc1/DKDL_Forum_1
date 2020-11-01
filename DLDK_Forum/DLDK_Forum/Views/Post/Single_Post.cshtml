@@ -1,0 +1,103 @@
+﻿
+@model DLDK_Forum.Models.BaiViet
+@{
+    Layout = null;
+    var noidung = Model.Noidung.Split('\n');
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>DLDK TRIP | Bài viết</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/fontawesome-free-5.14.0-web/css/all.css">
+    <link rel="stylesheet" href="~/Content/css/single_blog.css">
+</head>
+
+<body>
+    
+    <div class="title_container" style="background:url(/@Model.DuongDanHinhAnh);background-position: center;background-size: cover;background-repeat: no-repeat;background-attachment: fixed;">
+        @Html.Partial("~/Views/Shared/header.cshtml")
+        <div class="title">
+            <div class="title1">
+                <span>@Model.ThoiGian.Day . @Model.ThoiGian.Month . @Model.ThoiGian.Year<span>•</span>By @Model.NguoiDung.HoTen </span>
+                <h1>@Model.TieuDe</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-1">
+                <br>
+                @foreach (var item in noidung)
+                {
+                        <p>&emsp;@item</p>
+                }
+                <br>
+                <hr>
+                <div class="comment-container">
+                    <form class="post-react" action="/Post/bieucam?MaBaiViet=@Model.MaBaiViet" method="post">
+                        @{
+                            var Thich = Model.CamXucs.Where(s => s.Thich == 1).Count();
+                            var KThich = Model.CamXucs.Where(s => s.Thich == 0).Count();
+                            var BinhLuan = Model.BinhLuans.Count();
+                        }
+                        <button type="submit" value="1" name="thich" class="i-container"><i class="far fa-thumbs-up"></i><span>@Thich</span></button>
+                        <button type="submit" value="0" name="thich" class="i-container"><i class="far fa-thumbs-down"></i><span>@KThich</span></button>
+                        <div class="i-container"><i class="far fa-comment"></i><span>@BinhLuan</span></div>
+                    </form>
+                    <div class="count-container">
+                        <p>@Model.BinhLuans.Count() Bình luận</p>
+                    </div>
+                    <ul>
+                        @foreach (var item in Model.BinhLuans.OrderBy(s=>s.ThoiGian))
+                        {
+                            <li class="comment">
+                                <div class="avt-user">
+                                    <img src="~/@item.NguoiDung.AnhDaiDien" alt="">
+                                </div>
+                                <div class="comment-body">
+                                    <h4>@item.NguoiDung.HoTen</h4>
+                                    <span>@item.ThoiGian.ToString()</span>
+                                    <p>@item.NoiDung</p>
+                                    @*<p class="btn">Trả lời</p>*@
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <hr>
+                    <div class="new-comment">
+                        <h4>Thêm bình luận</h4>
+                        <form action="/Post/binhluan?idPost=@Model.MaBaiViet" method="post">
+                            <div class="message-container">
+                                <textarea name="NoiDung" cols="100" rows="20"></textarea>
+                            </div>
+                            <div class="btn-container">
+                                <input type="submit" class="btn-add" value="Thêm">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="author">
+                    <div class="image-container">
+                        <img src="~/Content/image/avt.jpg" alt="">
+                    </div>
+                    <h3>@Model.NguoiDung.HoTen</h3>
+                    <hr>
+                    <p>Du lịch là một trải nghiệm vô cùng thú vị để bản khám phá thế giới, Thế giới bao la còn bao điều bạn chưa từng khám phá ra, Xách ba lô lên và đi thôi</p>
+                    <div class="btn-container">
+                        <a href="/Home/Account?idAccount=@Model.Email" class="btn-add">Xem thêm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("~/Views/Shared/footer.cshtml")
+</body>
+
+</html>

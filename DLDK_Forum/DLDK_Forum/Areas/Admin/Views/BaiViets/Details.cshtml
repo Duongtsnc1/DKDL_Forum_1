@@ -1,0 +1,82 @@
+﻿@model DLDK_Forum.Models.BaiViet
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>BaiViet</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ChuDe.TenChuDe)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ChuDe.TenChuDe)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NguoiDung.HoTen)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NguoiDung.HoTen)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Noidung)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Noidung)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DuongDanHinhAnh)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DuongDanHinhAnh)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TinhTrang)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TinhTrang)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TieuDe)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TieuDe)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ThoiGian)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ThoiGian)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaBaiViet }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

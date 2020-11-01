@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DLDK_Forum.Models.N_models.NguoiDung_BaiViet>
+@{
+    Layout = null;
+}
+
+    <div class="hot-account-container">
+        <div class="title2">
+            <h1>Tài khoản</h1>
+            <h3>
+                Nhiều tương tác
+            </h3>
+        </div>
+        <div class="hot-account">
+            @foreach (var item in Model)
+            {
+                <div class="single-box" onclick="window.open('/Home/Account?idAccount=@item.ID.Email','_self')">
+                    <div class=" header-area img1 " style="background-image: url('/@item.ID.AnhDaiDien');"></div>
+                    <div class="body-area ">
+                        <h3>@item.ID.HoTen</h3>
+                        <p>
+                            <i class="fab fa-facebook "></i>
+                            <i class="fab fa-instagram "></i>
+                            <i class="fab fa-twitter "></i>
+                            <i class="fab fa-youtube "></i>
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>

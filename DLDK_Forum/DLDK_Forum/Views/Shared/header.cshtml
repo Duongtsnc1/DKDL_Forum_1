@@ -1,0 +1,50 @@
+﻿@using DLDK_Forum.Models
+<header>
+    <div class="container">
+        <div class="header-container">
+            <img src="~/Content/image/logo.png" id="logo" alt="">
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="/Home/Home">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a href="/Home/Contact">Liên hệ</a>
+                    </li>
+                    <li>
+                        <a href="/Home/About">Giới thiệu</a>
+                    </li>
+                    <li>
+                        <a href="/Post/ListPost?idChuDe=">Chủ đề</a>
+                    </li>
+                    @{
+                        var user = (NguoiDung)Session["User"];
+                    }
+                    @if (user != null && user.QuyenAdmin == 1)
+                    {
+                        <li>
+                            <a href="#">Manage(admin)</a>
+                        </li>
+                    }
+                    @if (user != null)
+                    {
+                        <li>
+                            <a href="/Home/Account?idAccount=@user.Email">@user.HoTen</a>
+                        </li>
+                        <li>
+                            <a href="/Home/Logout">Đăng xuất</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="/Home/Login_Logout">Đăng nhập</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</header>

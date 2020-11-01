@@ -1,0 +1,134 @@
+﻿
+@{
+    Layout = null;
+ 
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLDK TRIP | Đăng nhập</title>
+    <link rel="stylesheet" href="~/Content/css/login_logout.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"> -->
+    <link rel="stylesheet" type="text/css" href="~/Content/fontawesome-free-5.14.0-web/css/all.css">
+
+</head>
+
+<body>
+
+    @if (@TempData["Error_Res"] != null)
+    {
+        <script>
+            alert("Email đã được sử dụng");
+            //alert("bui vn duong")
+        </script>
+    }
+    @if (@TempData["Error"] != null)
+    {
+        <script>
+            alert("Bạn phải đăng nhập trước !!");
+            //alert("bui vn duong")
+        </script>
+    }
+    <div class="cont">
+        <div class="form sign-in">
+            <h2>Đăng nhập</h2>
+            <form action="/Home/Login" method="post">
+                <label class="label1">
+                    <span>Email</span>
+                    <input type="email" name="Email">
+                </label>
+                <label class="label1">
+                    <span>Mật khẩu</span>
+                    <input type='text' id="password" name="MatKhau">
+                    <i class="far fa-eye" id="togglePassword"></i>
+                </label>
+                <input type="submit" class="submit" name="" value="Đăng nhập">
+
+            </form>
+            <p class="forgot-password">@TempData["Error_login"]</p>
+
+            <div class="social-media">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-facebook-square"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-google-plus-square"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img-text m-up">
+
+                    <p>“Một khi bị nhiễm niềm đam mê du lịch, chẳng có phương thuốc nào có thể hóa giải, và tôi biết rằng tôi sẽ hạnh phúc khi có căn bệnh này cho đến hết cuộc đời.”</p>
+                </div>
+                <div class="img-text m-in">
+                    <h2>Tham gia cùng chúng tôi</h2>
+                    <p>Đăng nhập nếu bạn đã có tài khoản!</p>
+                </div>
+                <div class="img-btn">
+                    <span class="m-up">Đăng ký</span>
+                    <span class="m-in">Đăng nhập</span>
+                </div>
+            </div>
+            <form class="form sign-up" action="/Home/Register" method="post" enctype="multipart/form-data">
+                <h2>Đăng Ký</h2>
+                <label class="label1">
+                    <span>Tên</span>
+                    <input type="text" name="HoTen">
+                </label>
+                <label class="label1">
+                    <span>Email</span>
+                    <input type="email" name="Email">
+                </label>
+                <label class="label1">
+                    <span>Mật khẩu</span>
+                    <input type='text' name="MatKhau">
+                    <!-- <i class="far fa-eye-slash"></i> -->
+                </label>
+                <label class="label1">
+                    <span>Ảnh đại diện</span>
+                    <input type="file" name="file">
+                </label>
+                <label class="label1">
+                    <span>slogan</span>
+                    <input type="text" name="MoTa">
+                </label>
+                <label class="label1">
+                    <span>giới tính </span>
+                    <div class="sex-container">
+                        <div class="sex">
+                            <input type="radio" name="GioiTinh" id="nam" value="Nam">
+                            <label for="nam">Nam</label>
+                        </div>
+                        <div class="sex">
+                            <input type="radio" name="GioiTinh" id="nu" value="Nữ">
+                            <label for="nu">Nữ</label>
+                        </div>
+                    </div>
+                </label>
+                <input type="submit" class="submit" name="" value="Đăng ký">
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/Content/js/signin.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<DLDK_Forum.Models.ChuDe>
+@{
+    Layout = null;
+}
+
+<div class="table-content">
+    <ul>
+        <li>
+            <a href="/Post/ListPost?idChuDe=">Tất cả</a>
+        </li>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="/Post/ListPost?idChuDe=@item.MaChuDe">@item.TenChuDe</a>
+            </li>
+        }
+        <li>
+            <a href="/Post/ListPost?idChuDe=CD00">Khác</a>
+        </li>
+    </ul>
+</div>

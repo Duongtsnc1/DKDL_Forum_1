@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLDK TRIP | Liên hệ</title>
+    <link rel="stylesheet" href="~/Content/css/contact.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/fontawesome-free-5.14.0-web/css/all.css">
+
+</head>
+
+<body>
+    <section class="contact">
+        <a href="~/Home/Home" id="home">Trang chủ</a>
+        <div class="content">
+            <h2>LIÊN HỆ</h2>
+            <p>“Một khi bị nhiễm niềm đam mê du lịch, chẳng có phương thuốc nào có thể hóa giải, và tôi biết rằng tôi sẽ hạnh phúc khi có căn bệnh này cho đến hết cuộc đời.”</p>
+        </div>
+        <div class="container">
+            <div class="contactInfor">
+                <div class="box">
+                    <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i> </div>
+                    <div class="text">
+                        <h3>Địa chỉ</h3>
+                        <p>Dinh Hoa- Thai Nguyen </p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icon"><i class="fa fa-phone-square" aria-hidden="true"></i> </div>
+                    <div class="text">
+                        <h3>Điện thoại </h3>
+                        <p>0354780035 </p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i> </div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>lelinhmtatn@gmail.com </p>
+                    </div>
+                </div>
+            </div>
+            <div class="contactForm">
+                <form action="/Home/ThemPhanHoi" method="post">
+                    <h2>Nội dung</h2>
+                    <div class="inputBox">
+                        <input type="text" name="HoTen" required="required">
+                        <span>Họ tên</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" name="Email" required="required">
+                        <span>Email</span>
+                    </div>
+                    <div class="inputBox">
+                        <textarea required="required" name="NoiDung"></textarea>
+                        <span>Nội dung.......</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" name="" value="Gửi">
+                        <div class="result">
+                            <p>@ViewBag.mes</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+</body>
+
+</html>

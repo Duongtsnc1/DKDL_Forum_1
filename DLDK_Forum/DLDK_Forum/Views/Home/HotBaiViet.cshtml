@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DLDK_Forum.Models.N_models.HotPost>
+@{
+    Layout = null;
+}
+@*<p>@ViewBag.hl</p>*@
+    <div class="hot-post">
+        @foreach (var item in Model)
+        {
+            
+            <div class="course">
+                <div class="preview">
+                    <h2>@item.ID.ChuDe.TenChuDe</h2>
+                    <a href="list_post.html">View all</a>
+                </div>
+                <div class="info">
+                    <h6>@item.ID.ThoiGian.Day tháng @item.ID.ThoiGian.Month @item.ID.ThoiGian.Year</h6>
+                    <h2>@item.ID.TieuDe</h2>
+
+                    @if (item.ID.Noidung.Length <= 100)
+                    {
+                        <p class="trunc">
+                            @item.ID.Noidung...
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="trunc">
+                            @item.ID.Noidung.Substring(0, 100)...
+                        </p>
+                    }
+                    <a href="/Post/Single_Post?idPost=@item.ID.MaBaiViet" class="btn">Đọc thêm</a>
+                </div>
+            </div>
+        }
+    </div>

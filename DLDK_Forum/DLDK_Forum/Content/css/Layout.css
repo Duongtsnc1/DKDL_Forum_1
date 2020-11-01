@@ -1,0 +1,176 @@
+/*   header css    */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #eeeeee;
+}
+
+li,
+a {
+    text-decoration: none;
+}
+
+header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header-container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+    /* background: #27c0c0; */
+    /* 27c0c0 */
+}
+
+header #logo {
+    position: relative;
+    width: 100px;
+}
+
+.nav ul {
+    list-style-type: none;
+    display: block;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav ul li {
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav ul li:hover {
+    background: #fff;
+}
+
+.nav ul li:hover a {
+    color: #000;
+}
+
+.container {
+    position: relative;
+    max-width: 1300px;
+    margin: auto;
+    /* margin-top: 40px; */
+    /* background: #fff; */
+}
+
+header .container {
+    max-width: 100%;
+    width: 100%;
+    background: rgb(108, 236, 209);
+    padding: 10px;
+}
+
+.logo {
+    margin-right: auto;
+    height: 50px;
+    cursor: pointer;
+}
+
+
+/*   header css    */
+
+
+/*   footer css    */
+
+.footer {
+    background: #000;
+    color: #8a8a8a;
+    font-size: 14px;
+    padding: 60px 0 20px;
+    margin-top: 100px;
+}
+
+.footer .container {
+    max-width: 1300px;
+    margin: auto;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* transition: 2s all; */
+}
+
+.footer {
+    color: #8a8a8a
+}
+
+.footer-col-1,
+.footer-col-2,
+.footer-col-3,
+.footer-col-4 {
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.footer-col-1 {
+    flex-basis: 30%;
+}
+
+.footer-col-2 {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-col-2 img {
+    width: 100%;
+}
+
+.footer-col-1 img {
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.footer-col-3,
+.footer-col-4 {
+    flex-basis: 12%;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.app-logo {
+    margin-top: 20px;
+}
+
+.app-logo img {
+    width: 140px;
+}
+
+.footer hr {
+    border: none;
+    background: #b5b5b5;
+    height: 1px;
+    margin: 20px 0;
+}
+
+
+/*   footer css    */
