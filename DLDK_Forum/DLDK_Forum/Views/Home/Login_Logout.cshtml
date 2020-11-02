@@ -21,14 +21,14 @@
     @if (@TempData["Error_Res"] != null)
     {
         <script>
-            alert("Email đã được sử dụng");
+            alert("@Html.Raw(TempData["Error_Res"])");
             //alert("bui vn duong")
         </script>
     }
     @if (@TempData["Error"] != null)
     {
         <script>
-            alert("Bạn phải đăng nhập trước !!");
+            alert("@Html.Raw(TempData["Error"])");
             //alert("bui vn duong")
         </script>
     }

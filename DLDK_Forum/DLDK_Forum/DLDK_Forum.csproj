@@ -155,8 +155,11 @@
     <Compile Include="Models\CamXuc.cs" />
     <Compile Include="Models\ChuDe.cs" />
     <Compile Include="Models\Function\BaiVietDAO.cs" />
+    <Compile Include="Models\Function\CamXucDAO.cs" />
     <Compile Include="Models\Function\ChuDeDAO.cs" />
+    <Compile Include="Models\Function\imagesDAO.cs" />
     <Compile Include="Models\Function\NguoiDungDAO.cs" />
+    <Compile Include="Models\images.cs" />
     <Compile Include="Models\MyDB.cs" />
     <Compile Include="Models\NguoiDung.cs" />
     <Compile Include="Models\N_models\HotPost.cs" />
@@ -3738,7 +3741,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\Ha_long_1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\fontawesome-free-5.14.0-web\less\brands.less" />
@@ -3931,6 +3933,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

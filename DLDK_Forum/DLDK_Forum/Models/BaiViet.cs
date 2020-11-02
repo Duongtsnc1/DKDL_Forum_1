@@ -24,7 +24,6 @@ namespace DLDK_Forum.Models
         [StringLength(50)]
         public string Email { get; set; }
 
-        [Column(TypeName = "ntext")]
         [Required]
         public string Noidung { get; set; }
 
@@ -37,7 +36,6 @@ namespace DLDK_Forum.Models
 
         public int TinhTrang { get; set; }
 
-        [Column(TypeName = "ntext")]
         [Required]
         public string TieuDe { get; set; }
 

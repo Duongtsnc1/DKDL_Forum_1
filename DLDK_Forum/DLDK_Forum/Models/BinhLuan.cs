@@ -23,7 +23,6 @@ namespace DLDK_Forum.Models
         [Column(Order = 2)]
         public DateTime ThoiGian { get; set; }
 
-        [Column(TypeName = "ntext")]
         [Required]
         public string NoiDung { get; set; }
 

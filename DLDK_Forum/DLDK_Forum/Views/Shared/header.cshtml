@@ -6,6 +6,12 @@
             <div class="nav">
                 <ul>
                     <li>
+                        <form action="/Post/Search" method="post">
+                            <input type="text" name="search">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </li>
+                    <li>
                         <a href="/Home/Home">Trang chủ</a>
                     </li>
                     <li>
@@ -23,7 +29,7 @@
                     @if (user != null && user.QuyenAdmin == 1)
                     {
                         <li>
-                            <a href="#">Manage(admin)</a>
+                            <a href="/Admin/QuanLy/Index">Manage(admin)</a>
                         </li>
                     }
                     @if (user != null)

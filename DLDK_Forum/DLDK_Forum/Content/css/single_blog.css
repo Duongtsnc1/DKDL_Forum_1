@@ -146,7 +146,9 @@ header #logo {
     width: 100%;
     padding: 20px 40px
 }
-
+.col-1 p{
+    font-size:20px;
+}
 .col-1 .sub-title {
     font-size: 35px;
 }

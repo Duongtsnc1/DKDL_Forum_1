@@ -12,7 +12,7 @@ namespace DLDK_Forum.Controllers
 {
     public class HomeController : Controller
     {
-        MyDB MyDBContext = new MyDB();
+        private MyDB MyDBContext = new MyDB();
         public ActionResult Login_Logout()
         {
             return View();
@@ -84,23 +84,17 @@ namespace DLDK_Forum.Controllers
         [HttpPost]
         public ActionResult ThemPhanHoi(PhanHoi model)
         {
-            ViewBag.mes = "";
-
-            if (ModelState.IsValid) { 
-                PhanHoi tmp = new PhanHoi();
-                tmp.Email = model.Email;
-                tmp.HoTen = model.HoTen;
-                tmp.NoiDung = model.NoiDung;
-                tmp.ThoiGian = DateTime.Now;
-                MyDBContext.PhanHois.Add(tmp);
+            try { 
+                model.ThoiGian = DateTime.Now;
+                MyDBContext.PhanHois.Add(model);
                 MyDBContext.SaveChanges();
-                ViewBag.mes = "Cảm ơn bạn! Vì chúng tôi luôn luôn lắng nghe và thấu hiểu!";
+                TempData["phanhoi"] = "Cảm ơn bạn! Vì chúng tôi luôn luôn lắng nghe và thấu hiểu!";
             }
-            else
+            catch (Exception e)
             {
-                ViewBag.mes = "Hãy điền đầy đủ thông tin! Cảm ơn bạn";
+                TempData["phanhoi"] = e.ToString();
             }
-            return Redirect("/");
+            return RedirectToAction("Contact","Home");
         }
         public ActionResult About()
         {
@@ -133,5 +127,10 @@ namespace DLDK_Forum.Controllers
         {
             return View();
         }
+        //[HttpPost]
+        //public ActionResult Search(string search)
+        //{
+        //    var a = MyDBContext.BaiViets.Where(s => s.TieuDe.Contains(search)).ToList();
+        //}
     }
 }

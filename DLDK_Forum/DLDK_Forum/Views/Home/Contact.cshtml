@@ -59,13 +59,13 @@
                         <span>Email</span>
                     </div>
                     <div class="inputBox">
-                        <textarea required="required" name="NoiDung"></textarea>
+                        <textarea name="NoiDung" required="required"></textarea>
                         <span>Nội dung.......</span>
                     </div>
                     <div class="inputBox">
-                        <input type="submit" name="" value="Gửi">
+                        <input type="submit"  value="Gửi">
                         <div class="result">
-                            <p>@ViewBag.mes</p>
+                            <p>@TempData["phanhoi"]</p>
                         </div>
                     </div>
                 </form>

@@ -18,7 +18,6 @@ namespace DLDK_Forum.Models
         [StringLength(50)]
         public string HoTen { get; set; }
 
-        [Column(TypeName = "ntext")]
         [Required]
         public string NoiDung { get; set; }
 

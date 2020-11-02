@@ -1,4 +1,6 @@
 ﻿@using System.Globalization
+@using DLDK_Forum.Models
+@using DLDK_Forum.Models.Function
 @model IEnumerable<DLDK_Forum.Models.BaiViet>
 @{
     Layout = null;
@@ -29,14 +31,52 @@
                                     <img src="~/@item.DuongDanHinhAnh" alt="">
                                 </div>
                                 <div class="post-react">
-                                    @{ 
+                                    @{
                                         var Thich = item.CamXucs.Where(s => s.Thich == 1).Count();
                                         var KThich = item.CamXucs.Where(s => s.Thich == 0).Count();
                                         var BinhLuan = item.BinhLuans.Count();
                                     }
-                                    <div class="i-container"><i class="far fa-thumbs-up"></i><span>@Thich</span> </div>
-                                    <div class="i-container"><i class="far fa-thumbs-down"></i> <span>@KThich</span></div>
-                                    <div class="i-container"><i class="far fa-comment"></i><span>@BinhLuan</span></div>
+                                    @if (@Session["User"] != null)
+                                    {
+
+                                        CamXucDAO DAO = new CamXucDAO();
+                                        NguoiDung user = (NguoiDung)Session["User"];
+                                        var CX = DAO.getCamXuc(user.Email, item.MaBaiViet);
+                                        if (CX != null)
+                                        {
+                                            if (@CX.Thich == 1)
+                                            {
+                                                <div class="i-container" style="background:rgb(253, 96, 96);"><i class="far fa-thumbs-up"></i><span>@Thich</span> </div>
+                                                <div class="i-container"><i class="far fa-thumbs-down"></i> <span>@KThich</span></div>
+                                            }
+                                            else if (CX.Thich == 0)
+                                            {
+                                                <div class="i-container"><i class="far fa-thumbs-up"></i><span>@Thich</span> </div>
+                                                <div class="i-container" style="background:rgb(124, 124, 124);"><i class="far fa-thumbs-down" ></i> <span>@KThich</span></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="i-container"><i class="far fa-thumbs-up"></i><span>@Thich</span> </div>
+                                                <div class="i-container"><i class="far fa-thumbs-down"></i> <span>@KThich</span></div>
+                                            }
+                                            <div class="i-container"><i class="far fa-comment"></i><span>@BinhLuan</span></div>
+
+                                        }
+                                        else
+                                        {
+                                            <div class="i-container"><i class="far fa-thumbs-up"></i><span>@Thich</span> </div>
+                                            <div class="i-container"><i class="far fa-thumbs-down"></i> <span>@KThich</span></div>
+                                            <div class="i-container"><i class="far fa-comment"></i><span>@BinhLuan</span></div>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <div class="i-container"><i class="far fa-thumbs-up"></i><span>@Thich</span> </div>
+                                        <div class="i-container"><i class="far fa-thumbs-down"></i> <span>@KThich</span></div>
+                                        <div class="i-container"><i class="far fa-comment"></i><span>@BinhLuan</span></div>
+                                    }
+
                                 </div>
                             </div>
                             <div class="post-right">
@@ -50,7 +90,7 @@
                                     </div>
                                 </div>
                                 <div class="author" onclick="window.open('/Home/Account?idAccount=@item.Email','_self')">
-                                    <img src="~/Content/image/avt.jpg" alt="">
+                                    <img src="~/@item.NguoiDung.AnhDaiDien" alt="">
                                     <h4>@item.NguoiDung.HoTen</h4>
                                 </div>
                                 <div class="description">

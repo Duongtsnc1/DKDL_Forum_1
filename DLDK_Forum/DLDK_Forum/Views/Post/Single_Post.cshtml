@@ -1,8 +1,11 @@
 ﻿
 @model DLDK_Forum.Models.BaiViet
+@using DLDK_Forum.Models;
+@using DLDK_Forum.Models.Function;
 @{
     Layout = null;
     var noidung = Model.Noidung.Split('\n');
+  
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +20,7 @@
 </head>
 
 <body>
-    
+
     <div class="title_container" style="background:url(/@Model.DuongDanHinhAnh);background-position: center;background-size: cover;background-repeat: no-repeat;background-attachment: fixed;">
         @Html.Partial("~/Views/Shared/header.cshtml")
         <div class="title">
@@ -34,7 +37,7 @@
                 <br>
                 @foreach (var item in noidung)
                 {
-                        <p>&emsp;@item</p>
+                    <p>&emsp;@item</p>
                 }
                 <br>
                 <hr>
@@ -45,15 +48,47 @@
                             var KThich = Model.CamXucs.Where(s => s.Thich == 0).Count();
                             var BinhLuan = Model.BinhLuans.Count();
                         }
-                        <button type="submit" value="1" name="thich" class="i-container"><i class="far fa-thumbs-up"></i><span>@Thich</span></button>
-                        <button type="submit" value="0" name="thich" class="i-container"><i class="far fa-thumbs-down"></i><span>@KThich</span></button>
-                        <div class="i-container"><i class="far fa-comment"></i><span>@BinhLuan</span></div>
-                    </form>
+                        @if (@Session["User"] != null)
+                        {
+
+                            CamXucDAO DAO = new CamXucDAO();
+                            NguoiDung user = (NguoiDung)Session["User"];
+                            var CX = DAO.getCamXuc(user.Email, Model.MaBaiViet);
+                            if (CX != null)
+                            {
+                                if (@CX.Thich == 1)
+                                {
+                                    <style>
+                                        button.i-container:nth-child(2) {
+                                            background: rgb(253, 96, 96);
+                                        }
+                                        button.i-container:nth-child(3) {
+                                            background: #fff;
+                                        }
+                                    </style>
+                                }
+                                else
+                                {
+                                    <style>
+                                         button.i-container:nth-child(2) {
+                                            background: #fff;
+                                        }
+                                        button.i-container:nth-child(3) {
+                                            background: rgb(124, 124, 124);
+                                        }
+                                    </style>
+                                }
+                            }                           
+                        }
+                            <button type="submit" value="1" name="thich" class="i-container"><i class="far fa-thumbs-up"></i><span>@Thich</span></button>
+                            <button type="submit" value="0" name="thich" class="i-container"><i class="far fa-thumbs-down"></i><span>@KThich</span></button>
+                            <div class="i-container"><i class="far fa-comment"></i><span>@BinhLuan</span></div>                      
+                     </form>
                     <div class="count-container">
                         <p>@Model.BinhLuans.Count() Bình luận</p>
                     </div>
                     <ul>
-                        @foreach (var item in Model.BinhLuans.OrderBy(s=>s.ThoiGian))
+                        @foreach (var item in Model.BinhLuans.OrderBy(s => s.ThoiGian))
                         {
                             <li class="comment">
                                 <div class="avt-user">
@@ -69,23 +104,27 @@
                         }
                     </ul>
                     <hr>
-                    <div class="new-comment">
-                        <h4>Thêm bình luận</h4>
-                        <form action="/Post/binhluan?idPost=@Model.MaBaiViet" method="post">
-                            <div class="message-container">
-                                <textarea name="NoiDung" cols="100" rows="20"></textarea>
-                            </div>
-                            <div class="btn-container">
-                                <input type="submit" class="btn-add" value="Thêm">
-                            </div>
-                        </form>
-                    </div>
+                    @if (Session["User"] != null)
+                    {
+
+                        <div class="new-comment">
+                            <h4>Thêm bình luận</h4>
+                            <form action="/Post/binhluan?idPost=@Model.MaBaiViet" method="post">
+                                <div class="message-container">
+                                    <textarea name="NoiDung" cols="100" rows="20"></textarea>
+                                </div>
+                                <div class="btn-container">
+                                    <input type="submit" class="btn-add" value="Thêm">
+                                </div>
+                            </form>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="col-2">
                 <div class="author">
                     <div class="image-container">
-                        <img src="~/Content/image/avt.jpg" alt="">
+                        <img src="~/@Model.NguoiDung.AnhDaiDien" alt="">
                     </div>
                     <h3>@Model.NguoiDung.HoTen</h3>
                     <hr>

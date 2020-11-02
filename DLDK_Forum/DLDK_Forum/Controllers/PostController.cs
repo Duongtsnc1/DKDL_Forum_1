@@ -14,7 +14,7 @@ namespace DLDK_Forum.Controllers
        private MyDB MyDBContext = new MyDB();
 
         // GET: Post
-        public ActionResult ListPost(string idChuDe)
+        public ActionResult ListPost(string idChuDe,string search="")
         {
             BaiVietDAO DAO = new BaiVietDAO();
             List<BaiViet> BV = new List<BaiViet>();
@@ -65,7 +65,7 @@ namespace DLDK_Forum.Controllers
             }
             else
             {
-                BV.DuongDanHinhAnh = "images/Ha_long_1.jpg";
+                BV.DuongDanHinhAnh = "images/post_default.jpg";
             }
             MyDBContext.BaiViets.Add(BV);
             MyDBContext.SaveChanges();
@@ -86,15 +86,39 @@ namespace DLDK_Forum.Controllers
             BL.Email = ND.Email;
             MyDBContext.BinhLuans.Add(BL);
             MyDBContext.SaveChanges();
-            return Redirect("/");
-            //return View("Single_Post","Post",idPost);
+            return Redirect("/Post/Single_Post?idPost="+idPost);           
         }
         [HttpPost]
         public ActionResult bieucam(CamXuc CX)
         {
-            CX.Email = "user1@gmail.com";
-            return Redirect("/Post/Single_Post?idPost=");
+            if (Session["User"] == null)
+            {
+                @TempData["Error"] = "Bạn cần đăng nhập!";
+                return RedirectToAction("Login_Logout", "Home");
+            }
+            CamXucDAO DAO = new CamXucDAO();
+            NguoiDung user = (NguoiDung)Session["User"];
+            var CX_cu = MyDBContext.CamXucs.SingleOrDefault(s => s.Email == user.Email & s.MaBaiViet == CX.MaBaiViet);
+            if (CX_cu != null)
+            {
+                CX_cu.Thich = CX.Thich;
+                //db.Entry(dep).State = System.Data.Entity.EntityState.Modified;
+                MyDBContext.Entry(CX_cu).State = System.Data.Entity.EntityState.Modified;
+            }
+            else
+            {
+                CX.Email = user.Email;
+                MyDBContext.CamXucs.Add(CX);
+            }
+            MyDBContext.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
             //return View("Single_Post","Post",idPost);
         }
+        //[HttpPost]
+        //public ActionResult Search(string search)
+        //{
+
+        //    var a = MyDBContext.BaiViets.Where(s => s.TieuDe.Contains(search)).ToList();
+        //}
     }
 }

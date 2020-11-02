@@ -18,6 +18,7 @@ namespace DLDK_Forum.Models
         public virtual DbSet<ChuDe> ChuDes { get; set; }
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<PhanHoi> PhanHois { get; set; }
+        public virtual DbSet<images> imagess { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
