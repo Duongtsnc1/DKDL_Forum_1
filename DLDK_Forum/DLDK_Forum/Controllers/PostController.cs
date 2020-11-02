@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using DLDK_Forum.Models;
 using DLDK_Forum.Models.Function;
+using System.Text.RegularExpressions;
 
 namespace DLDK_Forum.Controllers
 {
@@ -58,10 +59,10 @@ namespace DLDK_Forum.Controllers
             BV.MaBaiViet = DAO.BaiMoi();
             if (file != null && file.ContentLength > 0)
             {
-                string filename = Path.GetFileName(file.FileName);
+                string filename = Regex.Replace(Path.GetFileName(file.FileName)," ","") ;
                 string imgpath = Path.Combine(Server.MapPath("~/images/"), filename);
                 file.SaveAs(imgpath);
-                BV.DuongDanHinhAnh = "images/" + file.FileName;
+                BV.DuongDanHinhAnh = "images/" + filename;
             }
             else
             {
