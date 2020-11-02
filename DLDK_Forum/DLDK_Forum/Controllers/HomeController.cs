@@ -127,10 +127,6 @@ namespace DLDK_Forum.Controllers
         {
             return View();
         }
-        //[HttpPost]
-        //public ActionResult Search(string search)
-        //{
-        //    var a = MyDBContext.BaiViets.Where(s => s.TieuDe.Contains(search)).ToList();
-        //}
+       
     }
 }

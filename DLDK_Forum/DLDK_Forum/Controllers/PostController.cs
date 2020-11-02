@@ -15,20 +15,33 @@ namespace DLDK_Forum.Controllers
        private MyDB MyDBContext = new MyDB();
 
         // GET: Post
-        public ActionResult ListPost(string idChuDe,string search="")
+        public ActionResult ListPost()
         {
-            BaiVietDAO DAO = new BaiVietDAO();
-            List<BaiViet> BV = new List<BaiViet>();
-            if (idChuDe == "") {
-                BV = MyDBContext.BaiViets.OrderBy(s=>s.ThoiGian).ToList();
+
+            return View();
+        }
+        public ActionResult post(string idChuDe="", string search = "")
+        {
+            List<BaiViet> result = new List<BaiViet>();
+            if (search == "" && idChuDe!="")
+            {
+                result = MyDBContext.BaiViets.Where(s => s.MaChuDe == idChuDe).ToList();
+            }
+            else if (idChuDe == "" && search!="")
+            {
+                result = MyDBContext.BaiViets.Where(s => s.TieuDe.Contains(search)).ToList();
+            }
+            else if (idChuDe == "")
+            {
+                result = MyDBContext.BaiViets.ToList();
             }
             else
             {
-                BV = DAO.GetBaiViets(idChuDe).OrderBy(s=>s.ThoiGian).ToList();
+                result = MyDBContext.BaiViets.Where(s => s.MaChuDe == idChuDe & s.TieuDe.Contains(search)).ToList();
             }
-            return View(BV);
+            result.OrderBy(s => s.ThoiGian).Reverse();
+            return View(result);
         }
-        
         public ActionResult TableOfContents()
         {
             List<ChuDe> Topics = MyDBContext.ChuDes.Where(s=>s.TenChuDe!="Khác").OrderBy(s=>s.TenChuDe).ToList();

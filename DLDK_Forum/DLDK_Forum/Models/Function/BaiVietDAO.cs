@@ -15,21 +15,12 @@ namespace DLDK_Forum.Models.Function
             a = new MyDB();
         }
 
-        public IQueryable<BaiViet> GetBaiViets(string idChuDe)
-        {
-            IQueryable<BaiViet> result;
-            if (idChuDe != "") { 
-                 result = (from s in a.BaiViets
-                               where s.MaChuDe == idChuDe
-                               select s);
-            }
-            else
-            {
-                 result = (from s in a.BaiViets
-                              select s);
-            }
-            return result;
-        }
+        //public List<BaiViet> GetBaiViets(string idChuDe="",string search="")
+        //{
+        //    List<BaiViet> result = new List<BaiViet>();
+        //    if(idChuDe=="")
+        //    return result;
+        //}
         public List<HotPost> GetHotBaiViets()
         {
             List<HotPost> NDBV = new List<HotPost>();

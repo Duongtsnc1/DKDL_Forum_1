@@ -3929,6 +3929,7 @@
     <Content Include="Views\Home\HotAccount.cshtml" />
     <Content Include="Views\Home\tesst.cshtml" />
     <Content Include="Views\Home\HotBaiViet.cshtml" />
+    <Content Include="Views\Post\post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
