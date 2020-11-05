@@ -179,7 +179,10 @@ a {
     color: rgb(81, 127, 255);
     margin-right: 20px;
 }
-
+.account-detail p {
+    max-height: 80px;
+    overflow: auto;
+}
 .account-detail p::first-letter {
     margin-left: 20px;
 }
@@ -189,7 +192,7 @@ a {
     column-gap: 10px;
     width: 100%;
     margin: 0 auto;
-    max-height: 600px;
+    max-height: 220px;
     overflow: auto;
 }
 
@@ -215,6 +218,29 @@ a {
     border-radius: 5px;
     transition: all 0.25s ease-in-out;
 }
+.posting-container {
+    max-height: 250px;
+    overflow: auto;
+}
+
+    .posting-container .posting {
+        margin-bottom: 10px;
+        border-left: 2px solid rgb(81, 127, 255);
+    }
+
+    .posting-container .posting-title {
+        font-weight: 900;
+        margin-left: 5px;
+        font-size: 18px;
+        margin-bottom:5px;
+    }
+
+    .posting-container .posting-time {
+        font-size: 15px;
+        color: rgb(95, 95, 95);
+        text-align-last: right;
+        margin-right: 5px;
+    }
 
 .Interactive {
     font-size: 20px;
@@ -324,45 +350,61 @@ a {
     display: flex;
 }
 
-.post-react .i-container {
-    /* margin: auto; */
-    position: relative;
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    margin: 0px 10px;
-    /* box-shadow: 2px 2px 20px #555; */
-    border-radius: 50%;
-    border: 1px solid #000;
-    transition: 0.5s;
-    justify-content: center;
-    align-items: center;
-}
+    .post-react .i-container {
+        /* margin: auto; */
+        position: relative;
+        font-size: 20px;
+        width: 65px;
+        height: 40px;
+        display: flex;
+        justify-content: space-around;
+        margin: 0px 10px;
+        /* box-shadow: 2px 2px 20px #555; */
+        border-radius: 40px;
+        border: 1px solid #000;
+        transition: 0.5s;
+        padding: 5px;
+        /* justify-content: center; */
+        align-items: center;
+    }
 
-.i-container i {
+/*.i-container i {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.5s;
-}
+}*/
 
-.i-container:hover i {
+/*.i-container:hover i {
     top: -50%;
-}
+}*/
 
 .i-container span {
-    display: none;
+    display: block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.i-container:hover span {
+/*.i-container:hover span {
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}*/
+
+/*.post-react .i-container:nth-child(1) i {
+    color: rgb(253, 96, 96);
 }
+
+.post-react .i-container:nth-child(2) i {
+    color: rgb(124, 124, 124);
+}
+
+.post-react .i-container:nth-child(3) i {
+    color: rgb(116, 151, 218);
+}*/
 
 .post-react .i-container:nth-child(1):hover {
     background: rgb(253, 96, 96);
@@ -377,20 +419,17 @@ a {
 }
 
 
-.post-react .i-container:hover i {
-    top: -30%;
-}
 
 .post-react .i-container:nth-child(1):hover i {
-    color: rgb(253, 96, 96);
+    color: rgb(34, 33, 33);
 }
 
 .post-react .i-container:nth-child(2):hover i {
-    color: rgb(124, 124, 124);
+    color: rgb(34, 33, 33);
 }
 
 .post-react .i-container:nth-child(3):hover i {
-    color: rgb(116, 151, 218);
+    color: rgb(34, 33, 33);
 }
 
 .post-right {

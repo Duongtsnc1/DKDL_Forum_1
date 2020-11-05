@@ -20,7 +20,7 @@ namespace DLDK_Forum.Models
         public string MaBaiViet { get; set; }
 
         public int Thich { get; set; }
-
+        public DateTime ThoiGian { get; set; }
         public virtual BaiViet BaiViet { get; set; }
 
         public virtual NguoiDung NguoiDung { get; set; }

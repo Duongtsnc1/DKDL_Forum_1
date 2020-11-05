@@ -25,8 +25,9 @@
         @Html.Partial("~/Views/Shared/header.cshtml")
         <div class="title">
             <div class="title1">
-                <span>@Model.ThoiGian.Day . @Model.ThoiGian.Month . @Model.ThoiGian.Year<span>•</span>By @Model.NguoiDung.HoTen </span>
+                <span>@Model.ThoiGian.Day . @Model.ThoiGian.Month . @Model.ThoiGian.Year<span>•</span> @Model.NguoiDung.HoTen</span>
                 <h1>@Model.TieuDe</h1>
+                <h4>@Model.ChuDe.TenChuDe</h4>
             </div>
         </div>
     </div>
@@ -96,7 +97,7 @@
                                 </div>
                                 <div class="comment-body">
                                     <h4>@item.NguoiDung.HoTen</h4>
-                                    <span>@item.ThoiGian.ToString()</span>
+                                    <span>@item.ThoiGian.ToString("dd/MM/yyyy HH:mm")</span>
                                     <p>@item.NoiDung</p>
                                     @*<p class="btn">Trả lời</p>*@
                                 </div>

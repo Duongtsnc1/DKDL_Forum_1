@@ -19,6 +19,8 @@
     {
         BinhLuan += item.BinhLuans.Count();
     }
+    var dangDuyet = Model.BaiViets.Where(s => s.TinhTrang == 0).OrderBy(s=>s.ThoiGian).Reverse().ToList();
+    var daDuyet = Model.BaiViets.Where(s => s.TinhTrang == 1).OrderBy(s=>s.ThoiGian).Reverse().ToList();
 
 }
 
@@ -83,16 +85,16 @@
             <div class="col-1">
                 <div class="profile">
                     @*<div class="info-phone">
-                        <i class="fas fa-phone-square"></i>
-                        <p>0869263806</p>
-                    </div>*@
-                    <div class="info-mail">
+            <i class="fas fa-phone-square"></i>
+            <p>0869263806</p>
+        </div>*@
+                    @*<div class="info-mail">
                         <i class="fas fa-envelope"></i>
                         <p>@Model.Email</p>
                     </div>
-                    <hr>
+                    <hr>*@
                     <div class="account-detail">
-                        <h4>Detail</h4>
+                        <h4>Slogan</h4>
                         <p>@Model.MoTa</p>
                     </div>
                     <hr>
@@ -109,6 +111,22 @@
                         </div>
                     </div>
                     <hr>
+                    @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == Model.Email)
+                    {
+                        <h4>Bài viết đang duyệt</h4>
+                        <div class="posting-container">
+                            @foreach(var item in dangDuyet)
+                            {
+                                
+                                <div class="posting">
+                                    <div class="posting-title">@item.TieuDe</div>
+                                    <div class="posting-time"> @item.ThoiGian.ToString("dd/MM/yyyy HH:mm")</div>
+                                </div>
+                            }
+                            
+                        </div>
+                        <hr>
+                    }
                     <div class="Interactive">
                         <p>@Model.BaiViets.Count() Bài viết</p>
                         <p>@Thich Thích</p>
@@ -118,7 +136,7 @@
                 </div>
             </div>
             <div class="col-2">
-                @foreach (var item in Model.BaiViets)
+                @foreach (var item in daDuyet)
                 {
                     <div class="post">
                         <div class="post-left">
@@ -139,7 +157,7 @@
                         <div class="post-right">
                             <div class="time">
                                 <div class="hour">
-                                    <p>@item.ThoiGian.TimeOfDay</p>
+                                    <p>@item.ThoiGian.Hour:@item.ThoiGian.Minute</p>
                                 </div>
                                 <div class="date">
                                     <p class="day">@item.ThoiGian.Day</p>
@@ -154,7 +172,7 @@
                                 <h2 class="title">
                                     @item.TieuDe
                                 </h2>
-                                @if (item.Noidung.Length <= 300)
+                                @if (item.Noidung.Length <= 200)
                                 {
                                     <p class="sub-title">
                                         @item.Noidung...
@@ -163,7 +181,7 @@
                                 else
                                 {
                                     <p class="sub-title">
-                                        @item.Noidung.Substring(0, 300)...
+                                        @item.Noidung.Substring(0, 200)...
                                     </p>
                                 }
                                

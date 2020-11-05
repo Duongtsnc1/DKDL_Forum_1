@@ -27,6 +27,7 @@ namespace DLDK_Forum.Controllers
             {
                 var user = DAO.GetUser(model.Email);
                 Session["User"] = user;
+                Session["diary"] = "";
                 ViewBag.mes = "Thành công";
                 return RedirectToAction("Home");
             }
@@ -125,6 +126,12 @@ namespace DLDK_Forum.Controllers
         }
         public ActionResult tesst()
         {
+            return View();
+        }
+        public ActionResult Diary(string idAccount)
+        {
+            diaryDAO DAO = new diaryDAO();
+            List<diary> list = DAO.getDiary(idAccount);
             return View();
         }
        

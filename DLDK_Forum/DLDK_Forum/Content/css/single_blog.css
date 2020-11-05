@@ -113,8 +113,16 @@ header #logo {
     font-weight: 900;
     text-shadow: 5px 5px 10px rgb(0, 137, 250);
     font-family: 'Roboto Condensed', sans-serif;
+    line-height:100px;
 }
-
+.title h4 {
+    font-size: 20px;
+    line-height: 1;
+    color: #fff;
+    font-weight: 900;
+    text-shadow: 5px 5px 10px rgb(0, 137, 250);
+    font-family: 'Roboto Condensed', sans-serif;
+}
 .title span {
     /* margin-bottom: 40px; */
     font-size: 20px;
@@ -267,45 +275,62 @@ header #logo {
     display: flex;
 }
 
-.post-react .i-container {
-    /* margin: auto; */
-    position: relative;
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    margin: 0px 10px;
-    /* box-shadow: 2px 2px 20px #555; */
-    border-radius: 50%;
-    border: 1px solid #000;
-    transition: 0.5s;
-    justify-content: center;
-    align-items: center;
-    background:#fff;
-}
+    .post-react .i-container {
+        /* margin: auto; */
+        position: relative;
+        font-size: 20px;
+        width: 65px;
+        height: 40px;
+        display: flex;
+        justify-content: space-around;
+        margin: 0px 10px;
+        /* box-shadow: 2px 2px 20px #555; */
+        border-radius: 40px;
+        border: 1px solid #000;
+        transition: 0.5s;
+        padding: 5px;
+        /* justify-content: center; */
+        align-items: center;
+        background:#fff;
+    }
 
-.i-container i {
+/*.i-container i {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.5s;
-}
+}*/
 
-.i-container:hover i {
+/*.i-container:hover i {
     top: -50%;
-}
+}*/
+
 .i-container span {
-    display: none;
+    display: block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.i-container:hover span {
+/*.i-container:hover span {
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}*/
+
+/*.post-react .i-container:nth-child(1) i {
+    color: rgb(253, 96, 96);
 }
+
+.post-react .i-container:nth-child(2) i {
+    color: rgb(124, 124, 124);
+}
+
+.post-react .i-container:nth-child(3) i {
+    color: rgb(116, 151, 218);
+}*/
 
 .post-react .i-container:nth-child(1):hover {
     background: rgb(253, 96, 96);
@@ -320,20 +345,17 @@ header #logo {
 }
 
 
-.post-react .i-container:hover i {
-    top: -30%;
-}
 
 .post-react .i-container:nth-child(1):hover i {
-    color: rgb(253, 96, 96);
+    color: rgb(34, 33, 33);
 }
 
 .post-react .i-container:nth-child(2):hover i {
-    color: rgb(124, 124, 124);
+    color: rgb(34, 33, 33);
 }
 
 .post-react .i-container:nth-child(3):hover i {
-    color: rgb(116, 151, 218);
+    color: rgb(34, 33, 33);
 }
 
 .footer {

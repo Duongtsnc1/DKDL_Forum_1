@@ -561,7 +561,7 @@ header .container {
 .single-box {
     position: relative;
     flex-direction: column;
-    width: 300px;
+    width: 330px;
     /* max-height: 430px; */
     background-color: #fff;
     /* align-self: center; */

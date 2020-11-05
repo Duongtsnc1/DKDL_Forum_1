@@ -157,11 +157,13 @@
     <Compile Include="Models\Function\BaiVietDAO.cs" />
     <Compile Include="Models\Function\CamXucDAO.cs" />
     <Compile Include="Models\Function\ChuDeDAO.cs" />
+    <Compile Include="Models\Function\diaryDAO.cs" />
     <Compile Include="Models\Function\imagesDAO.cs" />
     <Compile Include="Models\Function\NguoiDungDAO.cs" />
     <Compile Include="Models\images.cs" />
     <Compile Include="Models\MyDB.cs" />
     <Compile Include="Models\NguoiDung.cs" />
+    <Compile Include="Models\N_models\diary.cs" />
     <Compile Include="Models\N_models\HotPost.cs" />
     <Compile Include="Models\N_models\NguoiDung_BaiViet.cs" />
     <Compile Include="Models\PhanHoi.cs" />

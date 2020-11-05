@@ -80,7 +80,7 @@
                 <h2 class="title">
                     @item.TieuDe
                 </h2>
-                @if (item.Noidung.Length <= 300)
+                @if (item.Noidung.Length <= 200)
                 {
                     <p class="sub-title">
                         @item.Noidung...
@@ -89,13 +89,13 @@
                 else
                 {
                     <p class="sub-title">
-                        @item.Noidung.Substring(0, 300)...
+                        @item.Noidung.Substring(0, 200)...
                     </p>
                 }
 
             </div>
             <a href="/Post/Single_Post?idPost=@item.MaBaiViet" class="read">ĐỌC THÊM</a>
         </div>
-    </div>
+    </div> 
 }
 
