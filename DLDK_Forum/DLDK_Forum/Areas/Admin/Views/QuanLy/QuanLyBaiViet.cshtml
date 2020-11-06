@@ -56,27 +56,28 @@
                 <tr>
                     <th>Mã bài viết</th>
                     @*<th>Chủ đề</th>*@
-                <th>
-                    @using (Html.BeginForm("QuanLyBaiViet_2", "QuanLy", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <select name = "cbbChuDe">
+                    <th>
+                        @using (Html.BeginForm("QuanLyBaiViet_2", "QuanLy", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <select name="cbbChuDe">
 
-                            @foreach (var i in dscd)
-                            {
-                                <option value=@i.MaChuDe>@i.TenChuDe</option>
-                            }
-                        </select>
-                        <input type="submit" value="Chọn" />
+                                @foreach (var i in dscd)
+                                {
+                                    <option value=@i.MaChuDe>@i.TenChuDe</option>
+                                }
+                            </select>
+                            <input type="submit" value="Chọn" />
 
-                    }
-                    
-                </th>
+                        }
+
+                    </th>
                     <th>Tiêu đề</th>
                     <th>Tác giả</th>
                     <th>Ngày</th>
-                    <th>Trạng thái</th>
+                    @*<th>Trạng thái</th>*@
                     <th>Hành động</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -91,14 +92,15 @@
                         </a>
                     </td>
                     <td>@item.NguoiDung.HoTen</td>
-                    <td>@item.ThoiGian</td>                   
+                    <td>@item.ThoiGian</td>
                     @if (@item.TinhTrang == 1)
                     {
                         using (Html.BeginForm("Edit_BoDuyet", "BaiViets", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            <td><input type="checkbox" checked="checked" name="abc" value="@item.MaBaiViet"></td>
-                            <td><input type="submit" class="btn btn-info btn-lg" value="Bỏ duyệt"></td>
+                            @*<td><input type="checkbox" checked="checked" name="abc" value="@item.MaBaiViet"></td>
+                <td><input type="submit" class="btn btn-info btn-lg" value="Bỏ duyệt"></td>*@
+                            <td><button type="submit" class="btn btn-info btn-lg" name="btnCheck" value="@item.MaBaiViet">Bỏ duyệt</button></td>
 
                         }
 
@@ -109,12 +111,13 @@
                         using (Html.BeginForm("Edit_Duyet", "BaiViets", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            <td><input type="checkbox" name="khanh" value="@item.MaBaiViet"></td>
-                            <td><input type="submit" class="btn btn-info btn-lg" value="Duyệt"></td>
+                            @*<td><input type="checkbox" name="khanh" value="@item.MaBaiViet"></td>
+                <td><input type="submit" class="btn btn-info btn-lg" value="Duyệt"></td>*@
+                            <td><button type="submit" class="btn btn-info btn-lg" name="btnCheck" value="@item.MaBaiViet">Duyệt</button></td>
 
                         }
                     }
-                    <td>                      
+                    <td>
 
                         <!--Modal example-->
                         <div class="container">
@@ -137,7 +140,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <h5>@item.TieuDe</h5>
-                                            @if (item.Noidung.Length <= 60)
+                                            @if (item.Noidung.Length <= 65)
                                             {
                                                 <p>
                                                     @item.Noidung...
@@ -146,14 +149,13 @@
                                             else
                                             {
                                                 <p>
+
                                                     @item.Noidung.Substring(0, 60)...
                                                 </p>
                                             }
-                                           
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            @using (Html.BeginForm("DeleteConfirmed_2", "BaiViets", FormMethod.Post))
                                             {
                                                 @Html.AntiForgeryToken()
 
