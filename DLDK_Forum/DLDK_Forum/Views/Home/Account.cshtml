@@ -1,141 +1,17 @@
-﻿@model DLDK_Forum.Models.NguoiDung
+﻿
 @using DLDK_Forum.Models
 @{
-    Layout = null;
-    var Thich = 0;
-    var KThich = 0;
-    var BinhLuan = 0;
-    foreach(var item in Model.BaiViets)
-    {
-        Thich+=item.CamXucs.Where(s => s.Thich == 1).Count();
-    }
+       Layout = "~/Views/Shared/Account_Layout.cshtml";
 
-    foreach(var item in Model.BaiViets)
-    {
-        KThich+=item.CamXucs.Where(s => s.Thich == 0).Count();
-    }
-
-    foreach(var item in Model.BaiViets)
-    {
-        BinhLuan += item.BinhLuans.Count();
-    }
-    var dangDuyet = Model.BaiViets.Where(s => s.TinhTrang == 0).OrderBy(s=>s.ThoiGian).Reverse().ToList();
-    var daDuyet = Model.BaiViets.Where(s => s.TinhTrang == 1).OrderBy(s=>s.ThoiGian).Reverse().ToList();
+    NguoiDung ND_ACC = ViewBag.nguoidung;
+    //var dangDuyet = ND_ACC.BaiViets.Where(s => s.TinhTrang == 0).OrderBy(s=>s.ThoiGian).Reverse().ToList();
+    var daDuyet = ND_ACC.BaiViets.Where(s => s.TinhTrang == 1).OrderBy(s=>s.ThoiGian).Reverse().ToList();
 
 }
 
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="~/Content/fontawesome-free-5.14.0-web/css/all.css">
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" /> -->
-    <title>DLDK TRIP | Bùi Văn Dương</title>
-    <link rel="stylesheet" href="~/Content/css/account.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
-
-</head>
-
-<body>
-
-    <div class="account">
-        <div class="back-image">
-            @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == Model.Email)
-            {
-                <div class="btn-container">
-                 <a href="/Post/NewPost" class="btn">VIẾT BÀI MỚI</a>
-             </div>
-            }   
-            <div class="btn-container">
-                <a href="/Home/Home" class="btn">Trang chủ</a>
-            </div>
-            @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == 1)
-            {
-                <div class="btn-container">
-                    <a href="" class="btn">Quản lý(admin)</a>
-                </div>
-            }
-
-        </div>
-        <div class="info-container">
-            <div class="info">
-                <h2>@Model.HoTen</h2>
-                
-                <div class="social">
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
-
-            <div class="avt">
-                <img src="~/@Model.AnhDaiDien" alt="">
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="main">
-            <div class="col-1">
-                <div class="profile">
-                    @*<div class="info-phone">
-            <i class="fas fa-phone-square"></i>
-            <p>0869263806</p>
-        </div>*@
-                    @*<div class="info-mail">
-                        <i class="fas fa-envelope"></i>
-                        <p>@Model.Email</p>
-                    </div>
-                    <hr>*@
-                    <div class="account-detail">
-                        <h4>Slogan</h4>
-                        <p>@Model.MoTa</p>
-                    </div>
-                    <hr>
-                    <h4>Bộ sưu tập ảnh</h4>
-                    <div class="image-gallery">
-                        <div class="grid-image">
-                            @foreach (var item in Model.BaiViets)
-                            {
-                                <div class="image">
-                                    <img src="~/@item.DuongDanHinhAnh" alt="">
-                                </div>
-                            }
-
-                        </div>
-                    </div>
-                    <hr>
-                    @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == Model.Email)
-                    {
-                        <h4>Bài viết đang duyệt</h4>
-                        <div class="posting-container">
-                            @foreach(var item in dangDuyet)
-                            {
-                                
-                                <div class="posting">
-                                    <div class="posting-title">@item.TieuDe</div>
-                                    <div class="posting-time"> @item.ThoiGian.ToString("dd/MM/yyyy HH:mm")</div>
-                                </div>
-                            }
-                            
-                        </div>
-                        <hr>
-                    }
-                    <div class="Interactive">
-                        <p>@Model.BaiViets.Count() Bài viết</p>
-                        <p>@Thich Thích</p>
-                        <p>@KThich Không thích</p>
-                        <p>@BinhLuan Bình luận</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
+            
                 @foreach (var item in daDuyet)
                 {
                     <div class="post">
@@ -160,12 +36,12 @@
                                     <p>@item.ThoiGian.Hour:@item.ThoiGian.Minute</p>
                                 </div>
                                 <div class="date">
-                                    <p class="day">@item.ThoiGian.Day</p>
-                                    <p class="month-year">Tháng @item.ThoiGian.Month @item.ThoiGian.Year</p>
+                                    <p class="day">@item.ThoiGian.Day.ToString()</p>
+                                    <p class="month-year">Tháng @*@item.ThoiGian.Month.ToString() . @item.ThoiGian.Year.ToString()*@</p>
                                 </div>
                             </div>
                             <div class="author">
-                                <img src="~/@Model.AnhDaiDien" alt="">
+                                <img src="~/@ND_ACC.AnhDaiDien" alt="">
                                 <h4>@item.NguoiDung.HoTen</h4>
                             </div>
                             <div class="description">
@@ -190,49 +66,4 @@
                         </div>
                     </div>
                 }
-            </div>
-            <!-- <div class="col-3">
-                <div class="table-content">
-
-                    <ul>
-                        <li>
-                            <a href="">Hà Nội</a>
-                        </li>
-                        <li>
-                            <a href="">Sài Gòn</a>
-                        </li>
-                        <li>
-                            <a href="">Ninh Bình</a>
-                        </li>
-                        <li>
-                            <a href="">Hạ Long</a>
-                        </li>
-                        <li>
-                            <a href="">Huế-Đà Nẵng-Quảng Nam</a>
-                        </li>
-                        <li>
-                            <a href="">Sapa</a>
-                        </li>
-                        <li>
-                            <a href="">Miền Tây</a>
-                        </li>
-                        <li>
-                            <a href="">Nha Trang</a>
-                        </li>
-                        <li>
-                            <a href="">Phú Quốc</a>
-                        </li>
-                        <li>
-                            <a href="">Khác</a>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
-        </div>
-
-    </div>
-
-    @Html.Partial("~/Views/Shared/footer.cshtml")
-</body>
-
-</html>
+          

@@ -42,6 +42,6 @@ namespace DLDK_Forum.Models.Function
             }
             return list.OrderBy(s => s.ThoiGian).Reverse().ToList();
         }
-        //public 
+       
     }
 }

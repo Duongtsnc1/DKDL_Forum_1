@@ -14,7 +14,10 @@ namespace DLDK_Forum.Models.Function
         {
             a = new MyDB();
         }
-
+        public BaiViet getBaiViet(string idPost)
+        {
+            return a.BaiViets.SingleOrDefault(s => s.MaBaiViet == idPost);
+        }
         //public List<BaiViet> GetBaiViets(string idChuDe="",string search="")
         //{
         //    List<BaiViet> result = new List<BaiViet>();

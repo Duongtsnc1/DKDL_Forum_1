@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using DLDK_Forum.Models;
 using DLDK_Forum.Models.Function;
 using System.Text.RegularExpressions;
-
+using DLDK_Forum.Models.N_models;
 namespace DLDK_Forum.Controllers
 {
     public class PostController : Controller
@@ -115,19 +115,44 @@ namespace DLDK_Forum.Controllers
             var CX_cu = MyDBContext.CamXucs.SingleOrDefault(s => s.Email == user.Email & s.MaBaiViet == CX.MaBaiViet);
             if (CX_cu != null)
             {
-                CX_cu.Thich = CX.Thich;
-                //db.Entry(dep).State = System.Data.Entity.EntityState.Modified;
-                MyDBContext.Entry(CX_cu).State = System.Data.Entity.EntityState.Modified;
+                if (CX_cu.Thich == CX.Thich)
+                {
+                    MyDBContext.CamXucs.Remove(CX_cu);
+                }
+                else
+                {
+                    CX_cu.Thich = CX.Thich;
+                    CX_cu.ThoiGian = DateTime.Now;
+                    MyDBContext.Entry(CX_cu).State = System.Data.Entity.EntityState.Modified;
+                }                
             }
             else
             {
+                CX_cu.ThoiGian = DateTime.Now;
                 CX.Email = user.Email;
                 MyDBContext.CamXucs.Add(CX);
             }
+            
             MyDBContext.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
             //return View("Single_Post","Post",idPost);
         }
+        public ActionResult Diary(string idAccount)
+        {
+            diaryDAO DAO = new diaryDAO();
+            List<diary> list = DAO.getDiary(idAccount);
+            NguoiDungDAO DAO_ND = new NguoiDungDAO();
+            var TaiKhoan = DAO_ND.getNguoiDung(idAccount) ;
+            ViewBag.nguoidung = TaiKhoan;
+            ViewBag.diary = list;
+            return View();
+        }
+        //public ActionResult Diary(string idAccount)
+        //{
+        //    diaryDAO DAO = new diaryDAO();
+        //    List<diary> list = DAO.getDiary(idAccount);
+        //    return View(list);
+        //}
         //[HttpPost]
         //public ActionResult Search(string search)
         //{

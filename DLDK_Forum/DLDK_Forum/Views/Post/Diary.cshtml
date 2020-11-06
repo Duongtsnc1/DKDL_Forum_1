@@ -1,0 +1,80 @@
+﻿@using DLDK_Forum.Models.N_models;
+@using DLDK_Forum.Models.Function;
+@using DLDK_Forum.Models;
+@{
+    Layout = "~/Views/Shared/Account_Layout.cshtml";
+
+    List<diary> list = ViewBag.diary;
+
+    NguoiDung ND_DIA = ViewBag.nguoidung;
+}
+
+<link rel="stylesheet" href="~/Content/css/diary.css">
+
+
+
+
+@{
+
+    var month = 0;
+    BaiVietDAO DAO_BV = new BaiVietDAO();
+    CamXucDAO DAO_CX = new CamXucDAO();
+    var camxuc = "";
+    BaiViet BV;
+    CamXuc CX;
+}
+@foreach (var item in list)
+{
+
+    if (item.ThoiGian.Month != month)
+    {
+        month = item.ThoiGian.Month;
+        <div class="month">
+            <h4>Tháng @item.ThoiGian.Month.@item.ThoiGian.Year</h4>
+        </div>
+    }
+    {
+        BV = DAO_BV.getBaiViet(item.MaBaiViet);
+    }
+    if (item.Loai == "Cảm xúc")
+    {
+
+        if (DAO_CX.getCamXuc(item.Email, item.MaBaiViet).Thich == 1)
+        {
+            camxuc = "Thích";
+        }
+        else { camxuc = "Không thích"; }
+        {
+            CX = DAO_CX.getCamXuc(item.Email, item.MaBaiViet);
+
+        }
+        <div class="react">
+            <a href=""></a>
+            <div class="content">
+                Bạn đã <strong class="like">@camxuc</strong> <strong onclick="window.open('/Post/Single_Post?idPost=@item.MaBaiViet','_blank')">bài viết</strong> của
+                <strong onclick="window.open('/Home/Account?idAccount=@BV.NguoiDung.Email','_blank')" class="author">@BV.NguoiDung.HoTen</strong>
+            </div>
+            <div class="diary-title">@BV.TieuDe</div>
+            <div class="diary-time">@item.ThoiGian.ToString()</div>
+            <button type="submit" class="delete">Xoá</button>
+        </div>
+    }
+    if (item.Loai == "Bình luận")
+    {
+        <div class="comment">
+            @{
+                BinhLuanDAO DAO_BL = new BinhLuanDAO();
+                BinhLuan BL = DAO_BL.GetBinhLuan(item.Email, item.MaBaiViet);
+            }
+            <div class="content">
+                Bạn đã <strong class="cmt">Bình luận</strong> <strong onclick="window.open('/Post/Single_Post?idPost=@item.MaBaiViet','_blank')">bài viết</strong> của <strong onclick="window.open('/Home/Account?idAccount=@BV.NguoiDung.Email','_blank')" class="author">@BV.NguoiDung.HoTen</strong>
+            </div>
+            <div class="diary-title">@BV.TieuDe</div>
+            <div class="comment-content">@BL.NoiDung</div>
+            <div class="diary-time">@BL.ThoiGian.ToString()</div>
+            <button type="submit" class="delete">Xoá</button>
+        </div>
+    }
+}
+<div class="acc-detail">Tài khoản được tạo : @ND_DIA.ThoiGian.ToString()</div>
+

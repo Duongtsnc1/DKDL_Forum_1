@@ -14,6 +14,10 @@ namespace DLDK_Forum.Models.Function
         {
             a = new MyDB();
         }
+        public NguoiDung getNguoiDung(string email)
+        {
+            return a.NguoiDungs.SingleOrDefault(s => s.Email == email);
+        }
         public List<NguoiDung_BaiViet> GetHotNguoiDung()
         {
             List<NguoiDung_BaiViet> NDBV = new List<NguoiDung_BaiViet>();

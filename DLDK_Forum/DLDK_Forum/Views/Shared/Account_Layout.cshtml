@@ -1,0 +1,149 @@
+﻿
+@using DLDK_Forum.Models
+@{
+    Layout = null;
+    var Thich = 0;
+    var KThich = 0;
+    var BinhLuan = 0;
+    NguoiDung ND_LA = ViewBag.nguoidung;
+    foreach (var item in ND_LA.BaiViets)
+    {
+        Thich += item.CamXucs.Where(s => s.Thich == 1).Count();
+    }
+
+    foreach (var item in ND_LA.BaiViets)
+    {
+        KThich += item.CamXucs.Where(s => s.Thich == 0).Count();
+    }
+
+    foreach (var item in ND_LA.BaiViets)
+    {
+        BinhLuan += item.BinhLuans.Count();
+    }
+    var dangDuyet = ND_LA.BaiViets.Where(s => s.TinhTrang == 0).OrderBy(s => s.ThoiGian).Reverse().ToList();
+    //var daDuyet = Model.BaiViets.Where(s => s.TinhTrang == 1).OrderBy(s => s.ThoiGian).Reverse().ToList();
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/fontawesome-free-5.14.0-web/css/all.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" /> -->
+    <title>DLDK TRIP | Bùi Văn Dương</title>
+    <link rel="stylesheet" href="~/Content/css/account.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="account">
+        <div class="back-image">
+            @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == ND_LA.Email)
+            {
+                <div class="btn-container">
+                    <a href="/Post/NewPost" class="btn">VIẾT BÀI MỚI</a>
+                </div>
+            }
+            <div class="btn-container">
+                <a href="/Home/Home" class="btn">Trang chủ</a>
+            </div>
+            @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == 1)
+            {
+                <div class="btn-container">
+                    <a href="" class="btn">Quản lý(admin)</a>
+                </div>
+            }
+
+        </div>
+        <div class="info-container">
+            <div class="info">
+                <h2>@ND_LA.HoTen</h2>
+
+                <div class="social">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+
+            <div class="avt">
+                <img src="~/@ND_LA.AnhDaiDien" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main">
+            <div class="col-1">
+                <div class="profile">
+                    @*<div class="info-phone">
+                            <i class="fas fa-phone-square"></i>
+                            <p>0869263806</p>
+                        </div>*@
+                    @*<div class="info-mail">
+                            <i class="fas fa-envelope"></i>
+                            <p>@Model.Email</p>
+                        </div>
+                        <hr>*@
+                    <div class="account-detail">
+                        <h4>Slogan</h4>
+                        <p>@ND_LA.MoTa</p>
+                    </div>
+                    <hr>
+                    <h4>Bộ sưu tập ảnh</h4>
+                    <div class="image-gallery">
+                        <div class="grid-image">
+                            @foreach (var item in ND_LA.BaiViets)
+                            {
+                                <div class="image">
+                                    <img src="~/@item.DuongDanHinhAnh" alt="">
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                    <hr>
+                    @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == ND_LA.Email)
+                    {
+                        <h4>Bài viết đang duyệt</h4>
+                        <div class="posting-container">
+                            @foreach (var item in dangDuyet)
+                            {
+                                <div class="posting">
+                                    <div class="posting-title">@item.TieuDe</div>
+                                    <div class="posting-time"> @item.ThoiGian.ToString("dd/MM/yyyy HH:mm")</div>
+                                </div>
+                            }
+
+                        </div>
+                        <hr>
+                    }
+                    <div class="Interactive">
+                        <p>@ND_LA.BaiViets.Count() Bài viết</p>
+                        <p>@Thich Thích</p>
+                        <p>@KThich Không thích</p>
+                        <p>@BinhLuan Bình luận</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+               @RenderBody()
+            </div>
+           
+        </div>
+
+    </div>
+
+    @Html.Partial("~/Views/Shared/footer.cshtml")
+</body>
+
+</html>

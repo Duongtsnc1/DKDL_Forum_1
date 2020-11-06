@@ -1,0 +1,66 @@
+.month {
+    border-bottom: 2px solid rgb(81, 127, 255);
+    margin: 30px 0;
+}
+
+.month h4 {
+    text-align-last: right;
+    font-size: 20px;
+}
+
+.react,
+.comment {
+    background: #fff;
+    border: 1px solid rgb(81, 127, 255);
+    margin: 10px 0;
+    border-radius: 0 20px 20px 40px;
+    padding: 10px 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.like {
+    color: rgb(221, 41, 28);
+}
+
+.cmt {
+    color: rgb(81, 127, 255);
+}
+
+.author {
+    color: #000;
+    font-weight: 900;
+}
+
+.comment-content {
+    margin-left: 10px;
+    margin-top: 10px;
+    border-left: 2px solid rgb(81, 127, 255);
+}
+
+.diary-title {
+    margin-top: 8px;
+}
+
+.delete {
+    position: absolute;
+    padding: 3px;
+    right: 3%;
+    top: 5%;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+.delete:hover {
+    border-bottom: 2px solid rgb(221, 41, 28);
+}
+
+.diary-time {
+    text-align-last: right;
+}
+
+.content {
+    font-size: 20px;
+}
