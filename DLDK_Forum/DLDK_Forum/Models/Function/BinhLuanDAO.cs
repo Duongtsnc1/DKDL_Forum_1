@@ -5,17 +5,17 @@ using System.Web;
 
 namespace DLDK_Forum.Models.Function
 {
-    public class CamXucDAO
+    public class BinhLuanDAO
     {
         MyDB a;
-        public CamXucDAO()
+        public BinhLuanDAO()
         {
             a = new MyDB();
         }
-        public CamXuc getCamXuc(string email,string maBV)
+        public BinhLuan GetBinhLuan(string email,string idpost)
         {
-            return a.CamXucs.SingleOrDefault(s => s.Email == email & s.MaBaiViet == maBV);
+            return a.BinhLuans.SingleOrDefault(s => s.Email == email & s.MaBaiViet == idpost);
+
         }
-        
     }
 }

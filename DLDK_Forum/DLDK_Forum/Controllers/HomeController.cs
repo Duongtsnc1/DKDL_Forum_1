@@ -108,7 +108,8 @@ namespace DLDK_Forum.Controllers
         public ActionResult Account(string idAccount)
         {
             var TaiKhoan = MyDBContext.NguoiDungs.SingleOrDefault(s => s.Email == idAccount);
-            return View(TaiKhoan);
+            ViewBag.nguoidung = TaiKhoan;
+            return View();
         }
         public ActionResult List_Topic()
         {
@@ -128,12 +129,7 @@ namespace DLDK_Forum.Controllers
         {
             return View();
         }
-        public ActionResult Diary(string idAccount)
-        {
-            diaryDAO DAO = new diaryDAO();
-            List<diary> list = DAO.getDiary(idAccount);
-            return View();
-        }
+       
        
     }
 }

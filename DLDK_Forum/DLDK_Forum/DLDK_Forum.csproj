@@ -155,6 +155,7 @@
     <Compile Include="Models\CamXuc.cs" />
     <Compile Include="Models\ChuDe.cs" />
     <Compile Include="Models\Function\BaiVietDAO.cs" />
+    <Compile Include="Models\Function\BinhLuanDAO.cs" />
     <Compile Include="Models\Function\CamXucDAO.cs" />
     <Compile Include="Models\Function\ChuDeDAO.cs" />
     <Compile Include="Models\Function\diaryDAO.cs" />
@@ -176,6 +177,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\account.css" />
     <Content Include="Content\css\contact.css" />
+    <Content Include="Content\css\diary.css" />
     <Content Include="Content\css\Layout.css" />
     <Content Include="Content\css\about.css" />
     <Content Include="Content\css\list_post.css" />
@@ -3929,9 +3931,11 @@
     <Content Include="Views\Home\List_Topic.cshtml" />
     <Content Include="Views\Post\TableOfContents.cshtml" />
     <Content Include="Views\Home\HotAccount.cshtml" />
-    <Content Include="Views\Home\tesst.cshtml" />
     <Content Include="Views\Home\HotBaiViet.cshtml" />
     <Content Include="Views\Post\post.cshtml" />
+    <Content Include="Views\Post\Diary.cshtml" />
+    <Content Include="Views\Shared\Account_Layout.cshtml" />
+    <Content Include="Views\Home\tesst.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
