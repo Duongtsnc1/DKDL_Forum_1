@@ -1,14 +1,14 @@
-﻿@*@model DLDK_Forum.Models.BaiViet*@
+﻿@using DLDK_Forum.Models;
+@model ChuDe
 @{
-    ViewBag.Title = "QuanLyBaiViet";
+    ViewBag.Title = "QuanLyBaiViet_2";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutQuanLy.cshtml";
 }
-@using DLDK_Forum.Models;
 @{
-    List<BaiViet> dsbv = ViewBag.DSBV;
+    List<BaiViet> bvcd = ViewBag.BVCD;
+    List<BaiViet> dsbv = ViewBag.BVCD;
     List<ChuDe> dscd = ViewBag.DSCD;
 }
-
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -35,7 +35,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Các Bài Viết</h3>
+        <h3 class="card-title">Các Bài Viết thuộc chủ đề @Model.MaChuDe </h3>
 
         <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
@@ -55,23 +55,7 @@
             <thead>
                 <tr>
                     <th>Mã bài viết</th>
-                    @*<th>Chủ đề</th>*@
-                <th>
-                    @using (Html.BeginForm("QuanLyBaiViet_2", "QuanLy", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <select name = "cbbChuDe">
-
-                            @foreach (var i in dscd)
-                            {
-                                <option value=@i.MaChuDe>@i.TenChuDe</option>
-                            }
-                        </select>
-                        <input type="submit" value="Chọn" />
-
-                    }
-                    
-                </th>
+                    <th>Chủ đề</th>                    
                     <th>Tiêu đề</th>
                     <th>Tác giả</th>
                     <th>Ngày</th>
@@ -91,7 +75,7 @@
                         </a>
                     </td>
                     <td>@item.NguoiDung.HoTen</td>
-                    <td>@item.ThoiGian</td>                   
+                    <td>@item.ThoiGian</td>
                     @if (@item.TinhTrang == 1)
                     {
                         using (Html.BeginForm("Edit_BoDuyet", "BaiViets", FormMethod.Post))
@@ -109,11 +93,12 @@
                         using (Html.BeginForm("Edit_Duyet", "BaiViets", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            <td><input type="checkbox" name="khanh" value="@item.MaBaiViet"></td>
+                            <td><input type="checkbox" name="abc" value="@item.MaBaiViet"></td>
                             <td><input type="submit" class="btn btn-info btn-lg" value="Duyệt"></td>
 
                         }
                     }
+
                     <td>                      
 
                         <!--Modal example-->
@@ -165,7 +150,7 @@
 
                 }
 
-
+            
 
             </tbody>
         </table>
@@ -173,3 +158,4 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
+

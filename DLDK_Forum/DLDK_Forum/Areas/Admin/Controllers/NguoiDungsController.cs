@@ -122,7 +122,7 @@ namespace DLDK_Forum.Areas.Admin.Controllers
             NguoiDung nguoiDung = db.NguoiDungs.Find(id);
             db.NguoiDungs.Remove(nguoiDung);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("QuanLyNguoiDung", "QuanLy");
         }
         protected override void Dispose(bool disposing)
         {
