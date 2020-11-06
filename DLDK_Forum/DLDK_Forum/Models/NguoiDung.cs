@@ -28,7 +28,7 @@ namespace DLDK_Forum.Models
         public int QuyenAdmin { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(100)]
         public string MatKhau { get; set; }
 
         [StringLength(100)]

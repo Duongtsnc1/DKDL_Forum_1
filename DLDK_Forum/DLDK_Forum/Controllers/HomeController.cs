@@ -7,6 +7,7 @@ using DLDK_Forum.Models;
 using DLDK_Forum.Models.N_models;
 using DLDK_Forum.Models.Function;
 using System.IO;
+using DLDK_Forum.Areas.common;
 
 namespace DLDK_Forum.Controllers
 {
@@ -22,7 +23,7 @@ namespace DLDK_Forum.Controllers
         {
             ViewBag.mes = "";
             NguoiDungDAO DAO = new NguoiDungDAO();
-            var result = DAO.login(model.Email, model.MatKhau);
+            var result = DAO.login(model.Email, Encryptor.MD5Hash(model.MatKhau));
             if (result == true)
             {
                 var user = DAO.GetUser(model.Email);
@@ -56,10 +57,11 @@ namespace DLDK_Forum.Controllers
             else {
                 ND.Email = model.Email;
                 ND.HoTen = model.HoTen;
-                ND.MatKhau = model.MatKhau;
+                ND.MatKhau = Encryptor.MD5Hash(model.MatKhau);
                 ND.MoTa = model.MoTa;
                 ND.QuyenAdmin = 0;
                 ND.GioiTinh = model.GioiTinh;
+                ND.ThoiGian = DateTime.Now;
                 if (file != null && file.ContentLength > 0)
                 {
                     string filename = Path.GetFileName(file.FileName);
