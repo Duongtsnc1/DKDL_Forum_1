@@ -101,7 +101,7 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit_BoDuyet()
         {
-            var mabv = Request.Form["abc"].ToString();
+            var mabv = Request.Form["btnCheck"].ToString();
             db.BaiViets.Single(a => a.MaBaiViet == mabv).TinhTrang = 0;
             db.SaveChanges();
             return RedirectToAction("QuanLyBaiViet","QuanLy");
@@ -111,7 +111,7 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit_Duyet()
         {
-            var mabv_duyet = Request.Form["khanh"].ToString();
+            var mabv_duyet = Request.Form["btnCheck"].ToString();
             db.BaiViets.Single(a => a.MaBaiViet == mabv_duyet).TinhTrang = 1;
             db.SaveChanges();
             return RedirectToAction("QuanLyBaiViet", "QuanLy");

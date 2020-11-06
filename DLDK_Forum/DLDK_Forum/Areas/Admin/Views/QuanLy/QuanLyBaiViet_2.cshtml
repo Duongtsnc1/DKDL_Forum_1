@@ -81,8 +81,9 @@
                         using (Html.BeginForm("Edit_BoDuyet", "BaiViets", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            <td><input type="checkbox" checked="checked" name="abc" value="@item.MaBaiViet"></td>
-                            <td><input type="submit" class="btn btn-info btn-lg" value="Bỏ duyệt"></td>
+                            @*<td><input type="checkbox" checked="checked" name="abc" value="@item.MaBaiViet"></td>
+                <td><input type="submit" class="btn btn-info btn-lg" value="Bỏ duyệt"></td>*@
+                            <td><button type="submit" class="btn btn-info btn-lg" name="btnCheck" value="@item.MaBaiViet">Bỏ duyệt</button></td>
 
                         }
 
@@ -93,13 +94,14 @@
                         using (Html.BeginForm("Edit_Duyet", "BaiViets", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            <td><input type="checkbox" name="abc" value="@item.MaBaiViet"></td>
-                            <td><input type="submit" class="btn btn-info btn-lg" value="Duyệt"></td>
+                            @*<td><input type="checkbox" name="khanh" value="@item.MaBaiViet"></td>
+                <td><input type="submit" class="btn btn-info btn-lg" value="Duyệt"></td>*@
+                            <td><button type="submit" class="btn btn-info btn-lg" name="btnCheck" value="@item.MaBaiViet">Duyệt</button></td>
 
                         }
                     }
 
-                    <td>                      
+                    <td>
 
                         <!--Modal example-->
                         <div class="container">
