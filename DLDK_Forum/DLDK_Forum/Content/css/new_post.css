@@ -114,7 +114,7 @@ header #logo {
             margin-bottom: 20px;
         }
 
-input {
+.input {
     padding: 10px 15px 5px 15px;
     width: 700px;
     border: none;
@@ -122,9 +122,9 @@ input {
     /* border-radius: 20px; */
 }
 
-    input:focus,
-    input:active,
-    input:checked {
+    .input:focus,
+    .input:active,
+    .input:checked {
         border: none;
         border-bottom: 2px solid rgb(0, 137, 250);
         box-shadow: 10px 10px 5px rgb(0, 137, 250);
@@ -141,7 +141,7 @@ textarea {
     margin-top: 20px;
 }
 
-input,
+.input,
 textarea,
 #topics {
     font-size: 20px;
@@ -158,6 +158,7 @@ label {
     transition: 0.3s;
     font-size: 20px;
     text-decoration: none;
+    width:100%;
 }
 
     .btn:hover {

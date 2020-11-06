@@ -128,7 +128,7 @@ namespace DLDK_Forum.Controllers
             }
             else
             {
-                CX_cu.ThoiGian = DateTime.Now;
+                CX.ThoiGian = DateTime.Now;
                 CX.Email = user.Email;
                 MyDBContext.CamXucs.Add(CX);
             }

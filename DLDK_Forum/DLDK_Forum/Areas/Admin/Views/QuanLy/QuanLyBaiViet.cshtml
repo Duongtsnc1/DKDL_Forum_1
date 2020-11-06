@@ -137,7 +137,19 @@
                                         </div>
                                         <div class="modal-body">
                                             <h5>@item.TieuDe</h5>
-                                            <p>@item.Noidung.Substring(0, 60)...</p>
+                                            @if (item.Noidung.Length <= 60)
+                                            {
+                                                <p>
+                                                    @item.Noidung...
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p>
+                                                    @item.Noidung.Substring(0, 60)...
+                                                </p>
+                                            }
+                                           
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
