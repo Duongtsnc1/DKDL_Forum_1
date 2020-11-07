@@ -145,6 +145,8 @@
     <Compile Include="Areas\Admin\Controllers\BaiVietsController.cs" />
     <Compile Include="Areas\Admin\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyController.cs" />
+    <Compile Include="Areas\common\AccountLogin.cs" />
+    <Compile Include="Areas\common\Encryptor.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
