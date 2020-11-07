@@ -45,22 +45,28 @@
 <body>
 
     <div class="account">
-        <div class="back-image">
-            @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == ND_LA.Email)
-            {
+        <div class="back-image">         
+            <div class="btn-big-container">
                 <div class="btn-container">
-                    <a href="/Post/NewPost" class="btn">VIẾT BÀI MỚI</a>
+                    <a href="/Home/Home" class="btn">Trang chủ</a>
                 </div>
-            }
-            <div class="btn-container">
-                <a href="/Home/Home" class="btn">Trang chủ</a>
+                @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == ND_LA.Email)
+                {
+
+                    <div class="btn-container">
+                        <a href="/Post/Diary?idAccount=@ND_LA.Email" class="btn">Nhật ký hoạt động</a>
+                    </div>
+                    <div class="btn-container">
+                        <a href="/Post/NewPost" class="btn">VIẾT BÀI MỚI</a>
+                    </div>
+                }
+                @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == 1)
+                {
+                    <div class="btn-container">
+                        <a href="" class="btn">Quản lý(admin)</a>
+                    </div>
+                }
             </div>
-            @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == 1)
-            {
-                <div class="btn-container">
-                    <a href="" class="btn">Quản lý(admin)</a>
-                </div>
-            }
 
         </div>
         <div class="info-container">

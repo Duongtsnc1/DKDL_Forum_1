@@ -15,6 +15,7 @@ namespace DLDK_Forum.Controllers
         private MyDB MyDBContext = new MyDB();
         public ActionResult Login_Logout()
         {
+            
             return View();
         }
         [HttpPost]
@@ -29,7 +30,14 @@ namespace DLDK_Forum.Controllers
                 Session["User"] = user;
                 Session["diary"] = "";
                 ViewBag.mes = "Thành công";
-                return RedirectToAction("Home");
+                if (Session["url"] != null)
+                {
+                    return Redirect((string)Session["url"]);
+                }
+                else
+                {
+                    return RedirectToAction("Home");
+                }
             }
             else
             {
@@ -60,6 +68,7 @@ namespace DLDK_Forum.Controllers
                 ND.MoTa = model.MoTa;
                 ND.QuyenAdmin = 0;
                 ND.GioiTinh = model.GioiTinh;
+                ND.ThoiGian = DateTime.Now;
                 if (file != null && file.ContentLength > 0)
                 {
                     string filename = Path.GetFileName(file.FileName);

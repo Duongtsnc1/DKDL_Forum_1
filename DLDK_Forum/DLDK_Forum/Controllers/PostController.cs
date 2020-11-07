@@ -62,12 +62,12 @@ namespace DLDK_Forum.Controllers
             if (Session["User"] == null)
             {
                 TempData["Error"] = "Bạn phải đăng nhập!!";
-                return Redirect("/Home/Login_Logout");
+                return Redirect("/Home/Login_Logout?ReturnUrl=/Post/NewPost");
             }
             BaiVietDAO DAO = new BaiVietDAO();
             NguoiDung ND = (NguoiDung)Session["User"];
             BV.Email = ND.Email;
-            BV.TinhTrang = 1;
+            BV.TinhTrang = 0;
             BV.ThoiGian = DateTime.Now;
             BV.MaBaiViet = DAO.BaiMoi();
             if (file != null && file.ContentLength > 0)
@@ -90,6 +90,8 @@ namespace DLDK_Forum.Controllers
         {
             if (Session["User"] == null)
             {
+
+                Session["url"] = "/Post/Single_Post?idPost=" + idPost;
                 return Redirect("/Home/Login_Logout");
             }
             NguoiDung ND = (NguoiDung)Session["User"];
@@ -102,13 +104,15 @@ namespace DLDK_Forum.Controllers
             MyDBContext.SaveChanges();
             return Redirect("/Post/Single_Post?idPost="+idPost);           
         }
+       
         [HttpPost]
         public ActionResult bieucam(CamXuc CX)
         {
             if (Session["User"] == null)
             {
                 @TempData["Error"] = "Bạn cần đăng nhập!";
-                return RedirectToAction("Login_Logout", "Home");
+                Session["url"] = "/Post/Single_Post?idPost=" + CX.MaBaiViet;
+                return RedirectToAction("Login_Logout","Home");
             }
             CamXucDAO DAO = new CamXucDAO();
             NguoiDung user = (NguoiDung)Session["User"];

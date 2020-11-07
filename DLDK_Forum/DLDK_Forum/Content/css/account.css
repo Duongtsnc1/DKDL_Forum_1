@@ -37,30 +37,27 @@ a {
     position: relative;
 }
 
-.btn-container:nth-child(1) {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    font-family: "Roboto", sans-serif;
+
+
+.btn-big-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
-.btn-container:nth-child(2) {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-family: "Roboto", sans-serif;
-}
-
-.btn-container:nth-child(3) {
-    position: absolute;
-    right: 20px;
-    top: 50px;
-    font-family: "Roboto", sans-serif;
+.btn-container {
+    margin: 20px 15px;
 }
 
 .btn {
     position: relative;
+    padding: 10px 15px;
 }
+
+    .btn:hover {
+        background: #fff;
+        color: #000;
+    }
 
 .info-container {
     width: 100%;
