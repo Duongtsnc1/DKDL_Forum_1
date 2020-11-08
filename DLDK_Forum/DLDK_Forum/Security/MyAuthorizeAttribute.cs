@@ -16,13 +16,13 @@ namespace DLDK_Forum.Security
             
                 if (SessionPersister.UserName==null)
                 {
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "Home" }));
+                    filterContext.Result = new RedirectResult("/Home/Home");
                 }
                 else
                 {                    
                     MyPrincipal mp = new MyPrincipal(SessionPersister.UserName);
                 if (!mp.IsInRole(Roles))
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new{controller="Home", action= "Login_Logout" }));
+                    filterContext.Result = new RedirectResult("/Home/Login_Logout");
                 }
             
         }

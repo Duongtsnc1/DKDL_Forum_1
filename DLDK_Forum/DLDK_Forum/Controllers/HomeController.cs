@@ -145,7 +145,5 @@ namespace DLDK_Forum.Controllers
         {
             return View();
         }
-       
-       
     }
 }
