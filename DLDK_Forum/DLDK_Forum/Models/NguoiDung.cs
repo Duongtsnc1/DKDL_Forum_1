@@ -25,7 +25,9 @@ namespace DLDK_Forum.Models
         [StringLength(50)]
         public string HoTen { get; set; }
 
-        public int QuyenAdmin { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string QuyenAdmin { get; set; }
 
         [Required]
         [StringLength(100)]

@@ -60,7 +60,7 @@
                         <a href="/Post/NewPost" class="btn">VIẾT BÀI MỚI</a>
                     </div>
                 }
-                @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == 1)
+                @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == "admin")
                 {
                     <div class="btn-container">
                         <a href="" class="btn">Quản lý(admin)</a>

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DLDK_Forum.Security;
 
 
 namespace DLDK_Forum.Areas.Admin.Controllers
-{
+{   
     public class QuanLyController : Controller
     {
         MyDB db = new MyDB();
@@ -15,7 +16,7 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        }    
         public ActionResult QuanLyNguoiDung()
         {
             ViewBag.DSND = db.NguoiDungs.ToList();

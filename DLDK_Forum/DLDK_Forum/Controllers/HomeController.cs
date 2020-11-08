@@ -67,7 +67,7 @@ namespace DLDK_Forum.Controllers
                 ND.HoTen = model.HoTen;
                 ND.MatKhau = Encryptor.MD5Hash(model.MatKhau);
                 ND.MoTa = model.MoTa;
-                ND.QuyenAdmin = 0;
+                ND.QuyenAdmin = "Anonymous";
                 ND.GioiTinh = model.GioiTinh;
                 ND.ThoiGian = DateTime.Now;
                 if (file != null && file.ContentLength > 0)

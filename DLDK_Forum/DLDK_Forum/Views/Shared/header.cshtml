@@ -26,7 +26,7 @@
                     @{
                         var user = (NguoiDung)Session["User"];
                     }
-                    @if (user != null && user.QuyenAdmin == 1)
+                    @if (user != null && user.QuyenAdmin == "admin")
                     {
                         <li>
                             <a href="/Admin/QuanLy/Index">Manage(admin)</a>

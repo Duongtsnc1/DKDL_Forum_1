@@ -139,6 +139,7 @@ textarea {
     border: 2px solid rgb(0, 137, 250);
     padding: 10px 15px;
     margin-top: 20px;
+    resize:none;
 }
 
 .input,

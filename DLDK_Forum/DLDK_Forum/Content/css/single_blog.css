@@ -230,6 +230,9 @@ header #logo {
     max-width: 100%;
     overflow: auto;
     resize: vertical;
+    font-size:20px;
+    padding:10px;
+    resize: none;
 }
 
 .btn-container {
