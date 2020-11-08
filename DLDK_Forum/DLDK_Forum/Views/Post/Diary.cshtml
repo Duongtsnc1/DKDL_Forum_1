@@ -10,10 +10,6 @@
 }
 
 <link rel="stylesheet" href="~/Content/css/diary.css">
-
-
-
-
 @{
 
     var month = 0;
@@ -56,7 +52,9 @@
             </div>
             <div class="diary-title">@BV.TieuDe</div>
             <div class="diary-time">@item.ThoiGian.ToString()</div>
-            <button type="submit" class="delete">Xoá</button>
+            <form action="/Post/XoaDiary?idPost=@item.MaBaiViet&kind=1&time=@item.ThoiGian" method="post">
+                <button type="submit" class="delete">Xoá</button>
+            </form>
         </div>
     }
     if (item.Loai == "Bình luận")
@@ -72,7 +70,9 @@
             <div class="diary-title">@BV.TieuDe</div>
             <div class="comment-content">@BL.NoiDung</div>
             <div class="diary-time">@BL.ThoiGian.ToString()</div>
-            <button type="submit" class="delete">Xoá</button>
+            <form action="/Post/XoaDiary?idPost=@item.MaBaiViet&kind=2&time=@item.ThoiGian" method="post">
+                <button type="submit" class="delete">Xoá</button>
+            </form>
         </div>
     }
 }

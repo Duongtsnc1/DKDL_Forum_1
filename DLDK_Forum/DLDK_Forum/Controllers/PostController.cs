@@ -1,18 +1,20 @@
-﻿using System;
+﻿using DLDK_Forum.Models;
+using DLDK_Forum.Models.Function;
+using DLDK_Forum.Models.N_models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
-using DLDK_Forum.Models;
-using DLDK_Forum.Models.Function;
-using System.Text.RegularExpressions;
-using DLDK_Forum.Models.N_models;
+
 namespace DLDK_Forum.Controllers
 {
     public class PostController : Controller
     {
-       private MyDB MyDBContext = new MyDB();
+        private MyDB MyDBContext = new MyDB();
 
         // GET: Post
         public ActionResult ListPost()
@@ -20,18 +22,18 @@ namespace DLDK_Forum.Controllers
 
             return View();
         }
-        public ActionResult post(string idChuDe="", string search = "")
+        public ActionResult post(string idChuDe = "", string search = "")
         {
             List<BaiViet> result = new List<BaiViet>();
-            if (search == "" && idChuDe!="")
+            if (search == string.Empty && idChuDe != string.Empty)
             {
                 result = MyDBContext.BaiViets.Where(s => s.MaChuDe == idChuDe).ToList();
             }
-            else if (idChuDe == "" && search!="")
+            else if (idChuDe == string.Empty && search != string.Empty)
             {
                 result = MyDBContext.BaiViets.Where(s => s.TieuDe.Contains(search)).ToList();
             }
-            else if (idChuDe == "")
+            else if (idChuDe == string.Empty)
             {
                 result = MyDBContext.BaiViets.ToList();
             }
@@ -44,12 +46,16 @@ namespace DLDK_Forum.Controllers
         }
         public ActionResult TableOfContents()
         {
-            List<ChuDe> Topics = MyDBContext.ChuDes.Where(s=>s.TenChuDe!="Khác").OrderBy(s=>s.TenChuDe).ToList();
+            List<ChuDe> Topics = MyDBContext.ChuDes.Where(s => s.TenChuDe != "Khác").OrderBy(s => s.TenChuDe).ToList();
             return View(Topics);
         }
         public ActionResult Single_Post(string idPost)
         {
             var BaiViet = MyDBContext.BaiViets.SingleOrDefault(s => s.MaBaiViet == idPost);
+            if (BaiViet.TinhTrang == 0)
+            {
+                return Redirect("/Home/Home");
+            }
             return View(BaiViet);
         }
         public ActionResult NewPost()
@@ -57,7 +63,7 @@ namespace DLDK_Forum.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult dangbai(BaiViet BV,HttpPostedFileBase file)
+        public ActionResult dangbai(BaiViet BV, HttpPostedFileBase file)
         {
             if (Session["User"] == null)
             {
@@ -72,7 +78,7 @@ namespace DLDK_Forum.Controllers
             BV.MaBaiViet = DAO.BaiMoi();
             if (file != null && file.ContentLength > 0)
             {
-                string filename = Regex.Replace(Path.GetFileName(file.FileName)," ","") ;
+                string filename = Regex.Replace(Path.GetFileName(file.FileName), " ", string.Empty);
                 string imgpath = Path.Combine(Server.MapPath("~/images/"), filename);
                 file.SaveAs(imgpath);
                 BV.DuongDanHinhAnh = "images/" + filename;
@@ -83,10 +89,10 @@ namespace DLDK_Forum.Controllers
             }
             MyDBContext.BaiViets.Add(BV);
             MyDBContext.SaveChanges();
-            return Redirect("/Post/Single_Post?idPost="+BV.MaBaiViet);
+            return Redirect("/Post/Single_Post?idPost=" + BV.MaBaiViet);
         }
         [HttpPost]
-        public ActionResult binhluan( string NoiDung, string idPost)
+        public ActionResult binhluan(string NoiDung, string idPost)
         {
             if (Session["User"] == null)
             {
@@ -98,13 +104,14 @@ namespace DLDK_Forum.Controllers
             BinhLuan BL = new BinhLuan();
             BL.NoiDung = NoiDung;
             BL.MaBaiViet = idPost;
-            BL.ThoiGian = DateTime.Now;
+            DateTime date = DateTime.Now;
+            BL.ThoiGian = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Kind); 
             BL.Email = ND.Email;
             MyDBContext.BinhLuans.Add(BL);
             MyDBContext.SaveChanges();
-            return Redirect("/Post/Single_Post?idPost="+idPost);           
+            return Redirect("/Post/Single_Post?idPost=" + idPost);
         }
-       
+
         [HttpPost]
         public ActionResult bieucam(CamXuc CX)
         {
@@ -112,7 +119,7 @@ namespace DLDK_Forum.Controllers
             {
                 @TempData["Error"] = "Bạn cần đăng nhập!";
                 Session["url"] = "/Post/Single_Post?idPost=" + CX.MaBaiViet;
-                return RedirectToAction("Login_Logout","Home");
+                return RedirectToAction("Login_Logout", "Home");
             }
             CamXucDAO DAO = new CamXucDAO();
             NguoiDung user = (NguoiDung)Session["User"];
@@ -128,7 +135,7 @@ namespace DLDK_Forum.Controllers
                     CX_cu.Thich = CX.Thich;
                     CX_cu.ThoiGian = DateTime.Now;
                     MyDBContext.Entry(CX_cu).State = System.Data.Entity.EntityState.Modified;
-                }                
+                }
             }
             else
             {
@@ -136,7 +143,7 @@ namespace DLDK_Forum.Controllers
                 CX.Email = user.Email;
                 MyDBContext.CamXucs.Add(CX);
             }
-            
+
             MyDBContext.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
             //return View("Single_Post","Post",idPost);
@@ -146,22 +153,31 @@ namespace DLDK_Forum.Controllers
             diaryDAO DAO = new diaryDAO();
             List<diary> list = DAO.getDiary(idAccount);
             NguoiDungDAO DAO_ND = new NguoiDungDAO();
-            var TaiKhoan = DAO_ND.getNguoiDung(idAccount) ;
+            var TaiKhoan = DAO_ND.getNguoiDung(idAccount);
             ViewBag.nguoidung = TaiKhoan;
             ViewBag.diary = list;
             return View();
         }
-        //public ActionResult Diary(string idAccount)
-        //{
-        //    diaryDAO DAO = new diaryDAO();
-        //    List<diary> list = DAO.getDiary(idAccount);
-        //    return View(list);
-        //}
-        //[HttpPost]
-        //public ActionResult Search(string search)
-        //{
+        [HttpPost]
+        public ActionResult XoaDiary(string idPost, int kind, DateTime time)
+        {
+            NguoiDung ND = (NguoiDung)Session["User"];
 
-        //    var a = MyDBContext.BaiViets.Where(s => s.TieuDe.Contains(search)).ToList();
-        //}
+            if (kind == 2)
+            {
+
+                var BL = MyDBContext.BinhLuans.Where(s => s.Email == ND.Email && s.MaBaiViet == idPost);
+                MyDBContext.BinhLuans.RemoveRange(BL);
+
+            }
+            else
+            {
+                CamXuc CX = MyDBContext.CamXucs.SingleOrDefault(s => s.Email == ND.Email && s.MaBaiViet == idPost && s.ThoiGian == time);
+                MyDBContext.CamXucs.Remove(CX);
+
+            }
+            MyDBContext.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

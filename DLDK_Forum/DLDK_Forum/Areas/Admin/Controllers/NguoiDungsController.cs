@@ -7,9 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DLDK_Forum.Models;
+using DLDK_Forum.Security;
 
 namespace DLDK_Forum.Areas.Admin.Controllers
-{
+{   
     public class NguoiDungsController : Controller
     {
         private MyDB db = new MyDB();
