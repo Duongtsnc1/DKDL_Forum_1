@@ -124,18 +124,15 @@ namespace DLDK_Forum.Controllers
             ViewBag.nguoidung = TaiKhoan;
             return View();
         }
-        [MyAuthorize(Roles ="")]
         public ActionResult List_Topic()
         {
             return View();
         }
-        [MyAuthorize(Roles = "")]
         public ActionResult HotAccount()
         {
             NguoiDungDAO DAO = new NguoiDungDAO();
             return View(DAO.GetHotNguoiDung().GetRange(0,4));
         }
-        [MyAuthorize(Roles = "")]
         public ActionResult HotBaiViet()
         {
             BaiVietDAO DAO = new BaiVietDAO();
@@ -145,7 +142,5 @@ namespace DLDK_Forum.Controllers
         {
             return View();
         }
-       
-       
     }
 }
