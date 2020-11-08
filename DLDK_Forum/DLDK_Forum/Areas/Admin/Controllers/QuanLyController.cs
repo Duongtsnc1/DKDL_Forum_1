@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using DLDK_Forum.Security;
 
-
 namespace DLDK_Forum.Areas.Admin.Controllers
 {   
+    [MyAuthorize(Roles ="admin")]
     public class QuanLyController : Controller
     {
         MyDB db = new MyDB();

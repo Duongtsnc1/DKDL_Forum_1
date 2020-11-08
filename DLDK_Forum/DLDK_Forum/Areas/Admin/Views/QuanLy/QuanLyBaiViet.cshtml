@@ -154,6 +154,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            @using (Html.BeginForm("DeleteConfirmed_2", "BaiViets", FormMethod.Post))
                                             {
                                                 @Html.AntiForgeryToken()
 

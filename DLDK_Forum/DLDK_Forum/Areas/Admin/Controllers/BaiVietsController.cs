@@ -12,6 +12,7 @@ using DLDK_Forum.Security;
 using System.Web.Security;
 namespace DLDK_Forum.Areas.Admin.Controllers
 {  
+    [MyAuthorize(Roles="admin")]
     public class BaiVietsController : Controller
     {
         private MyDB db = new MyDB();
@@ -140,6 +141,10 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         {
             BaiViet baiViet = db.BaiViets.Find(id);
             db.BaiViets.Remove(baiViet);
+            var BL = baiViet.BinhLuans.ToList();
+            db.BinhLuans.RemoveRange(BL);
+            var CX = baiViet.CamXucs.ToList();
+            db.CamXucs.RemoveRange(CX);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -150,6 +155,10 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         {
             string id = Request.Form["check"].ToString();
             BaiViet baiViet = db.BaiViets.Find(id);
+            var BL = baiViet.BinhLuans.ToList();
+            db.BinhLuans.RemoveRange(BL);
+            var CX = baiViet.CamXucs.ToList();
+            db.CamXucs.RemoveRange(CX);
             db.BaiViets.Remove(baiViet);
             db.SaveChanges();
             return RedirectToAction("QuanLyBaiViet","QuanLy");

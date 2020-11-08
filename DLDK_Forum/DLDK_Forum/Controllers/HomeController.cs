@@ -8,7 +8,7 @@ using DLDK_Forum.Models.N_models;
 using DLDK_Forum.Models.Function;
 using System.IO;
 using DLDK_Forum.Areas.common;
-
+using DLDK_Forum.Security;
 namespace DLDK_Forum.Controllers
 {
     public class HomeController : Controller
@@ -16,7 +16,10 @@ namespace DLDK_Forum.Controllers
         private MyDB MyDBContext = new MyDB();
         public ActionResult Login_Logout()
         {
-            
+            if (Session["User"] != null)
+            {
+                return Redirect("/Home/Home");
+            }
             return View();
         }
         [HttpPost]
@@ -121,15 +124,18 @@ namespace DLDK_Forum.Controllers
             ViewBag.nguoidung = TaiKhoan;
             return View();
         }
+        [MyAuthorize(Roles ="")]
         public ActionResult List_Topic()
         {
             return View();
         }
+        [MyAuthorize(Roles = "")]
         public ActionResult HotAccount()
         {
             NguoiDungDAO DAO = new NguoiDungDAO();
             return View(DAO.GetHotNguoiDung().GetRange(0,4));
         }
+        [MyAuthorize(Roles = "")]
         public ActionResult HotBaiViet()
         {
             BaiVietDAO DAO = new BaiVietDAO();

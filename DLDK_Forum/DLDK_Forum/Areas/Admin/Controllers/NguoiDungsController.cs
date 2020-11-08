@@ -10,7 +10,9 @@ using DLDK_Forum.Models;
 using DLDK_Forum.Security;
 
 namespace DLDK_Forum.Areas.Admin.Controllers
-{   
+{
+    [MyAuthorize(Roles = "admin")]
+
     public class NguoiDungsController : Controller
     {
         private MyDB db = new MyDB();
@@ -111,6 +113,10 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             NguoiDung nguoiDung = db.NguoiDungs.Find(id);
+            var BV = nguoiDung.BaiViets.ToList();
+            db.BaiViets.RemoveRange(BV);
+            var CX = nguoiDung.CamXucs.ToList();
+            db.CamXucs.RemoveRange(CX);
             db.NguoiDungs.Remove(nguoiDung);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -121,6 +127,19 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         {
             string id = Request.Form["check"].ToString();
             NguoiDung nguoiDung = db.NguoiDungs.Find(id);
+            var BV = nguoiDung.BaiViets.ToList();
+            List<BinhLuan> BL=new List<BinhLuan>();
+            List<CamXuc> BV_CX = new List<CamXuc>();
+            foreach(var item in BV)
+            {
+                BL.AddRange(item.BinhLuans);
+                BV_CX.AddRange(item.CamXucs);
+            }
+            db.CamXucs.RemoveRange(BV_CX);
+            db.BinhLuans.RemoveRange(BL);
+            db.BaiViets.RemoveRange(BV);
+            var CX = nguoiDung.CamXucs.ToList();
+            db.CamXucs.RemoveRange(CX);
             db.NguoiDungs.Remove(nguoiDung);
             db.SaveChanges();
             return RedirectToAction("QuanLyNguoiDung", "QuanLy");

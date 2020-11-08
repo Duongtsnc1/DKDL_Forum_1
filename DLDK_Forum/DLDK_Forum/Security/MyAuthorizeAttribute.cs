@@ -8,12 +8,12 @@ using DLDK_Forum.Models;
 using System.Web.Routing;
 namespace DLDK_Forum.Security
 {
+    [AttributeUsage(AttributeTargets.Class|AttributeTargets.Method)]
     public class MyAuthorizeAttribute : AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (filterContext.HttpContext.Request.IsAuthenticated)
-            {
+            
                 if (SessionPersister.UserName==null)
                 {
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "Home" }));
@@ -24,7 +24,7 @@ namespace DLDK_Forum.Security
                 if (!mp.IsInRole(Roles))
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new{controller="Home", action= "Login_Logout" }));
                 }
-            }
+            
         }
     }
 }

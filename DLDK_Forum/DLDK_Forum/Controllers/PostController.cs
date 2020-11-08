@@ -22,6 +22,7 @@ namespace DLDK_Forum.Controllers
 
             return View();
         }
+        [Authorize]
         public ActionResult post(string idChuDe = "", string search = "")
         {
             List<BaiViet> result = new List<BaiViet>();
