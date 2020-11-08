@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
-
+using DLDK_Forum.Security;
 namespace DLDK_Forum.Controllers
 {
     public class PostController : Controller
@@ -22,7 +22,7 @@ namespace DLDK_Forum.Controllers
 
             return View();
         }
-        [Authorize]
+       
         public ActionResult post(string idChuDe = "", string search = "")
         {
             List<BaiViet> result = new List<BaiViet>();
@@ -45,6 +45,7 @@ namespace DLDK_Forum.Controllers
             result.OrderBy(s => s.ThoiGian).Reverse();
             return View(result);
         }
+       
         public ActionResult TableOfContents()
         {
             List<ChuDe> Topics = MyDBContext.ChuDes.Where(s => s.TenChuDe != "Khác").OrderBy(s => s.TenChuDe).ToList();
@@ -53,6 +54,10 @@ namespace DLDK_Forum.Controllers
         public ActionResult Single_Post(string idPost)
         {
             var BaiViet = MyDBContext.BaiViets.SingleOrDefault(s => s.MaBaiViet == idPost);
+            if ((string)Session["permission"] == "admin")
+            {
+                return View(BaiViet);
+            }
             if (BaiViet.TinhTrang == 0)
             {
                 return Redirect("/Home/Home");

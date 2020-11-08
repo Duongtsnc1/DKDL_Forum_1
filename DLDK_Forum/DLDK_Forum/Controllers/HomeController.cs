@@ -32,7 +32,7 @@ namespace DLDK_Forum.Controllers
             {
                 var user = DAO.GetUser(model.Email);
                 Session["User"] = user;
-                Session["diary"] = "";
+                Session["permission"] = user.QuyenAdmin;
                 ViewBag.mes = "Thành công";
                 if (Session["url"] != null)
                 {
@@ -124,18 +124,18 @@ namespace DLDK_Forum.Controllers
             ViewBag.nguoidung = TaiKhoan;
             return View();
         }
-        [MyAuthorize(Roles ="")]
+   
         public ActionResult List_Topic()
         {
             return View();
         }
-        [MyAuthorize(Roles = "")]
+     
         public ActionResult HotAccount()
         {
             NguoiDungDAO DAO = new NguoiDungDAO();
             return View(DAO.GetHotNguoiDung().GetRange(0,4));
         }
-        [MyAuthorize(Roles = "")]
+        
         public ActionResult HotBaiViet()
         {
             BaiVietDAO DAO = new BaiVietDAO();
