@@ -134,7 +134,7 @@ namespace DLDK_Forum.Controllers
         {
             if (Session["User"] == null)
             {
-                @TempData["Error"] = "Bạn cần đăng nhập!";
+                TempData["Error"] = "Bạn cần đăng nhập!";
                 Session["url"] = "/Post/Single_Post?idPost=" + CX.MaBaiViet;
                 return RedirectToAction("Login_Logout", "Home");
             }

@@ -17,7 +17,7 @@ namespace DLDK_Forum.Security
             
                 if (SessionPersister.UserName==null)
                 {
-                filterContext.Controller.ViewData["E"] = "Bạn không thể truy cập đường dẫn";
+                //filterContext.Controller.ViewData["E"] = "Bạn không thể truy cập đường dẫn";
                     filterContext.Result = new RedirectResult("/Home/Home");
                 }
                 else

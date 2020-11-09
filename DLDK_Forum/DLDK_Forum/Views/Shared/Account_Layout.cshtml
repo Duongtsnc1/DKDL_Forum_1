@@ -50,6 +50,12 @@
                 <div class="btn-container">
                     <a href="/Home/Home" class="btn">Trang chủ</a>
                 </div>
+                @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == "admin")
+                {
+                    <div class="btn-container">
+                        <a href="" class="btn">Quản lý(admin)</a>
+                    </div>
+                }
                 @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == ND_LA.Email)
                 {
 
@@ -57,15 +63,16 @@
                         <a href="/Post/Diary?idAccount=@ND_LA.Email" class="btn">Nhật ký hoạt động</a>
                     </div>
                     <div class="btn-container">
-                        <a href="/Post/NewPost" class="btn">VIẾT BÀI MỚI</a>
+                        <a href="/Home/Account?idAccount=@ND_LA.Email" class="btn">Bài viết</a>
                     </div>
-                }
-                @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == "admin")
-                {
                     <div class="btn-container">
-                        <a href="" class="btn">Quản lý(admin)</a>
+                        <a href="/Post/NewPost" class="btn">Viết bài mới</a>
+                    </div>
+                    <div class="btn-container">
+                        <a href="/Home/Logout" class="btn">Đăng xuất</a>
                     </div>
                 }
+
             </div>
 
         </div>
