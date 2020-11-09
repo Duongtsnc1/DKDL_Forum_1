@@ -27,7 +27,7 @@ namespace DLDK_Forum.Models.Function
         public List<HotPost> GetHotBaiViets()
         {
             List<HotPost> NDBV = new List<HotPost>();
-            var BV = a.BaiViets.ToList();
+            var BV = a.BaiViets.Where(s=>s.TinhTrang==1).ToList();
             HotPost tmp;
             foreach (var item in BV)
             {

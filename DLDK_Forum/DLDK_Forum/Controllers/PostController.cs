@@ -19,7 +19,6 @@ namespace DLDK_Forum.Controllers
         // GET: Post
         public ActionResult ListPost()
         {
-
             return View();
         }
        
@@ -42,8 +41,7 @@ namespace DLDK_Forum.Controllers
             else
             {
                   result = BV.Where(s => s.MaChuDe == idChuDe & s.TieuDe.Contains(search)).OrderBy(s => s.ThoiGian).ToList();
-            }
-            
+            }            
             return View(result.Where(s=>s.TinhTrang==1).Reverse());
         }
        
@@ -66,7 +64,7 @@ namespace DLDK_Forum.Controllers
             }
             if (BaiViet.TinhTrang == 0)
             {
-                TempData["E"] = "Đường dẫn không tồn tại";
+                //TempData["E"] = "Đường dẫn không tồn tại";
                 return Redirect("/Home/Home");
             }
             return View(BaiViet);
