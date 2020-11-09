@@ -98,7 +98,7 @@
                             @Html.AntiForgeryToken()
                             @*<td><input type="checkbox" checked="checked" name="abc" value="@item.MaBaiViet"></td>
                 <td><input type="submit" class="btn btn-info btn-lg" value="Bỏ duyệt"></td>*@
-                            <td><button type="submit" class="btn btn-info btn-lg" name="btnCheck" value="@item.MaBaiViet">Bỏ duyệt</button></td>
+                            <td><button type="submit" class="btn btn-info btn-lg btn-admin" name="btnCheck" value="@item.MaBaiViet">Bỏ duyệt</button></td>
 
                         }
 
@@ -111,7 +111,7 @@
                             @Html.AntiForgeryToken()
                             @*<td><input type="checkbox" name="khanh" value="@item.MaBaiViet"></td>
                 <td><input type="submit" class="btn btn-info btn-lg" value="Duyệt"></td>*@
-                            <td><button type="submit" class="btn btn-info btn-lg" name="btnCheck" value="@item.MaBaiViet">Duyệt</button></td>
+                            <td><button type="submit" class="btn btn-info btn-lg btn-admin btn-duyet" name="btnCheck" value="@item.MaBaiViet">Duyệt</button></td>
 
                         }
                     }
@@ -124,7 +124,7 @@
                                 var str = "#myModal" + @item.MaBaiViet.ToString();
                                 var strid = "myModal" + @item.MaBaiViet.ToString();
                             }
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target=@str>Xoá</button>
+                            <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal" data-target=@str>Xoá</button>
 
                             <!-- Modal -->
                             <div class="modal fade" id=@strid role="dialog">
