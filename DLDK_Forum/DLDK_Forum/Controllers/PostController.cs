@@ -25,22 +25,23 @@ namespace DLDK_Forum.Controllers
        
         public ActionResult post(string idChuDe = "", string search = "")
         {
+            var BV = MyDBContext.BaiViets.Where(s => s.TinhTrang == 1);
             List<BaiViet> result = new List<BaiViet>();
             if (search == string.Empty && idChuDe != string.Empty)
             {
-                result = MyDBContext.BaiViets.Where(s => s.MaChuDe == idChuDe).ToList();
+                result = BV.Where(s => s.MaChuDe == idChuDe).ToList();
             }
             else if (idChuDe == string.Empty && search != string.Empty)
             {
-                result = MyDBContext.BaiViets.Where(s => s.TieuDe.Contains(search)).ToList();
+                result = BV.Where(s => s.TieuDe.Contains(search)).ToList();
             }
             else if (idChuDe == string.Empty)
             {
-                result = MyDBContext.BaiViets.ToList();
+                result = BV.ToList();
             }
             else
             {
-                result = MyDBContext.BaiViets.Where(s => s.MaChuDe == idChuDe & s.TieuDe.Contains(search)).ToList();
+                result = BV.Where(s => s.MaChuDe == idChuDe & s.TieuDe.Contains(search)).ToList();
             }
             result.OrderBy(s => s.ThoiGian).Reverse();
             return View(result);
@@ -51,14 +52,18 @@ namespace DLDK_Forum.Controllers
             List<ChuDe> Topics = MyDBContext.ChuDes.Where(s => s.TenChuDe != "Khác").OrderBy(s => s.TenChuDe).ToList();
             return View(Topics);
         }
-        public ActionResult Single_Post(string idPost)
+        public ActionResult Single_Post(string idPost="")
         {
+            if (idPost == ""||Session["permission"]==null)
+            {
+                return Redirect("/Home/Home");
+            }
             var BaiViet = MyDBContext.BaiViets.SingleOrDefault(s => s.MaBaiViet == idPost);
             if ((string)Session["permission"] == "admin")
             {
                 return View(BaiViet);
             }
-            if (BaiViet.TinhTrang == 0)
+            if (BaiViet.TinhTrang == 0||Session["User"]==null)
             {
                 return Redirect("/Home/Home");
             }
@@ -66,6 +71,10 @@ namespace DLDK_Forum.Controllers
         }
         public ActionResult NewPost()
         {
+            if(Session["User"] == null)
+            {
+                return Redirect("/Home/Home");
+            }
             return View();
         }
         [HttpPost]
@@ -156,6 +165,15 @@ namespace DLDK_Forum.Controllers
         }
         public ActionResult Diary(string idAccount)
         {
+            if (Session["User"] == null)
+            {
+                return Redirect("/Home/Home");
+            }
+            if (((NguoiDung)Session["User"]).Email != idAccount)
+            {
+                NguoiDung ND = (NguoiDung)Session["User"];
+                return Redirect("/Post/Diary?idAccount"+ND.Email);
+            }
             diaryDAO DAO = new diaryDAO();
             List<diary> list = DAO.getDiary(idAccount);
             NguoiDungDAO DAO_ND = new NguoiDungDAO();

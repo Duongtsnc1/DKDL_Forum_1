@@ -52,6 +52,7 @@ namespace DLDK_Forum.Controllers
         public ActionResult Logout()
         {
             Session["User"] = null;
+            Session["permission"] = null;
             return Redirect("/");
         }
         [HttpPost]
@@ -118,8 +119,12 @@ namespace DLDK_Forum.Controllers
         {
             return View();
         }
-        public ActionResult Account(string idAccount)
+        public ActionResult Account(string idAccount="")
         {
+            if (Session["User"] == null)
+            {
+                return Redirect("/Home/Login_Logout");
+            }
             var TaiKhoan = MyDBContext.NguoiDungs.SingleOrDefault(s => s.Email == idAccount);
             ViewBag.nguoidung = TaiKhoan;
             return View();

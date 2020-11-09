@@ -134,7 +134,7 @@
                         <hr>
                     }
                     <div class="Interactive">
-                        <p>@ND_LA.BaiViets.Count() Bài viết</p>
+                        <p>@ND_LA.BaiViets.Where(s=>s.TinhTrang==1).Count() Bài viết</p>
                         <p>@Thich Thích</p>
                         <p>@KThich Không thích</p>
                         <p>@BinhLuan Bình luận</p>
