@@ -11,13 +11,13 @@
 <meta name="viewport" topic="width=device-width, initial-scale=1.0">
 <title>DLDK TRIP | Trang chủ</title>
 <link rel="icon" href="http://example.com/favicon.png">
-@if (ViewData["E"] != null)
+@if (TempData["E"] != null)
 {
-        <script>
-            alert("@Html.Raw(ViewData["E"])");
+    <script>
+            alert("@Html.Raw(TempData["E"])");
             //alert("bui vn duong")
-        </script>
-    
+    </script>
+
 }
 <section>
     @Html.Partial("~/Views/Shared/header.cshtml")
@@ -42,7 +42,7 @@
         </video>
         <h3 class="section">Địa điểm <span>không thể bỏ qua</span></h3>
     </div>
-    @Html.Action("List_Topic","Home")
+    @Html.Action("List_Topic", "Home")
 </div>
 <div class="container">
     <div class="wrapper">
@@ -59,7 +59,7 @@
 
 
 <div class="container">
-    @Html.Action("HotAccount","Home")
+    @Html.Action("HotAccount", "Home")
 </div>
 
 
