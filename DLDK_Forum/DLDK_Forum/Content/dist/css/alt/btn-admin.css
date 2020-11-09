@@ -1,0 +1,17 @@
+.btn-admin
+{
+	width :65px;
+	font-size: 13px;
+	padding:2px;
+}
+.btn-duyet
+{
+	background-color:red;
+	border-color:red;
+	
+}
+.btn-xoa 
+{
+	font-size: 13px;
+	padding: 2px 4px 2px 4px;
+}
