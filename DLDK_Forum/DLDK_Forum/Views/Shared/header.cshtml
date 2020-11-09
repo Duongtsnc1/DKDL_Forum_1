@@ -23,14 +23,15 @@
                     <li>
                         <a href="/Post/ListPost?idChuDe=">Chủ đề</a>
                     </li>
-                    @{
-                        var user = (NguoiDung)Session["User"];
-                    }
-                    @if (user != null && user.QuyenAdmin == "admin")
+                   
+                    @if (Session["User"]!=null && (string)Session["permission"] == "admin")
                     {
                         <li>
                             <a href="/Admin/QuanLy/Index">Manage(admin)</a>
                         </li>
+                    }
+                    @{ 
+                        NguoiDung user = (NguoiDung)Session["User"];
                     }
                     @if (user != null)
                     {

@@ -50,7 +50,7 @@
                 <div class="btn-container">
                     <a href="/Home/Home" class="btn">Trang chủ</a>
                 </div>
-                @if (Session["User"] != null && ((NguoiDung)Session["User"]).QuyenAdmin == "admin")
+                @if (Session["User"] != null && (string)Session["permission"] == "admin")
                 {
                     <div class="btn-container">
                         <a href="" class="btn">Quản lý(admin)</a>
@@ -112,7 +112,7 @@
                         <p>@ND_LA.MoTa</p>
                     </div>
                     <hr>
-                    <h4>Bộ sưu tập ảnh</h4>
+                    @*<h4>Bộ sưu tập ảnh</h4>
                     <div class="image-gallery">
                         <div class="grid-image">
                             @foreach (var item in ND_LA.BaiViets)
@@ -124,7 +124,7 @@
 
                         </div>
                     </div>
-                    <hr>
+                    <hr>*@
                     @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == ND_LA.Email)
                     {
                         <h4>Bài viết đang duyệt</h4>

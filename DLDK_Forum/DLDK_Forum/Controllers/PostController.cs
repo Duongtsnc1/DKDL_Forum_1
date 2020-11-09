@@ -29,22 +29,22 @@ namespace DLDK_Forum.Controllers
             List<BaiViet> result = new List<BaiViet>();
             if (search == string.Empty && idChuDe != string.Empty)
             {
-                result = BV.Where(s => s.MaChuDe == idChuDe).ToList();
+                  result = BV.Where(s => s.MaChuDe == idChuDe).OrderBy(s=>s.ThoiGian).ToList();
             }
             else if (idChuDe == string.Empty && search != string.Empty)
             {
-                result = BV.Where(s => s.TieuDe.Contains(search)).ToList();
+                  result = BV.Where(s => s.TieuDe.Contains(search)).OrderBy(s => s.ThoiGian).ToList();
             }
             else if (idChuDe == string.Empty)
             {
-                result = BV.ToList();
+                  result = BV.OrderBy(s => s.ThoiGian).ToList();
             }
             else
             {
-                result = BV.Where(s => s.MaChuDe == idChuDe & s.TieuDe.Contains(search)).ToList();
+                  result = BV.Where(s => s.MaChuDe == idChuDe & s.TieuDe.Contains(search)).OrderBy(s => s.ThoiGian).ToList();
             }
-            result.OrderBy(s => s.ThoiGian).Reverse();
-            return View(result);
+            
+            return View(result.Where(s=>s.TinhTrang==1).Reverse());
         }
        
         public ActionResult TableOfContents()
@@ -56,7 +56,7 @@ namespace DLDK_Forum.Controllers
         {
             if (idPost == "")
             {
-                ViewData["E"] = "Đường dẫn không tồn tại";
+                TempData["E"] = "Đường dẫn không tồn tại";
                 return Redirect("/Home/Home");
             }
             var BaiViet = MyDBContext.BaiViets.SingleOrDefault(s => s.MaBaiViet == idPost);
@@ -66,7 +66,7 @@ namespace DLDK_Forum.Controllers
             }
             if (BaiViet.TinhTrang == 0)
             {
-                ViewData["E"] = "Đường dẫn không tồn tại";
+                TempData["E"] = "Đường dẫn không tồn tại";
                 return Redirect("/Home/Home");
             }
             return View(BaiViet);
