@@ -18,7 +18,8 @@ namespace DLDK_Forum.Controllers
         {
             if (Session["User"] != null)
             {
-                return Redirect("/Home/Home");
+                NguoiDung a =  (NguoiDung)(Session["User"]);
+                return Redirect("/Home/Account?idAccount="+a.Email);
             }
             return View();
         }

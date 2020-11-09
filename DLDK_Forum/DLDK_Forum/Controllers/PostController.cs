@@ -54,8 +54,9 @@ namespace DLDK_Forum.Controllers
         }
         public ActionResult Single_Post(string idPost="")
         {
-            if (idPost == ""||Session["permission"]==null)
+            if (idPost == "")
             {
+                ViewData["E"] = "Đường dẫn không tồn tại";
                 return Redirect("/Home/Home");
             }
             var BaiViet = MyDBContext.BaiViets.SingleOrDefault(s => s.MaBaiViet == idPost);
@@ -63,8 +64,9 @@ namespace DLDK_Forum.Controllers
             {
                 return View(BaiViet);
             }
-            if (BaiViet.TinhTrang == 0||Session["User"]==null)
+            if (BaiViet.TinhTrang == 0)
             {
+                ViewData["E"] = "Đường dẫn không tồn tại";
                 return Redirect("/Home/Home");
             }
             return View(BaiViet);
@@ -73,7 +75,7 @@ namespace DLDK_Forum.Controllers
         {
             if(Session["User"] == null)
             {
-                return Redirect("/Home/Home");
+                return Redirect("/Home/Login_Logout");
             }
             return View();
         }

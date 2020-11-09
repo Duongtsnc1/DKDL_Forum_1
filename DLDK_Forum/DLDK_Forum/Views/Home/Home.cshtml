@@ -11,7 +11,15 @@
 <meta name="viewport" topic="width=device-width, initial-scale=1.0">
 <title>DLDK TRIP | Trang chủ</title>
 <link rel="icon" href="http://example.com/favicon.png">
-
+@if (ViewData["E"] != null)
+{
+    
+        <script>
+            alert("@Html.Raw(TempData["E"])");
+            //alert("bui vn duong")
+        </script>
+    
+}
 <section>
     @Html.Partial("~/Views/Shared/header.cshtml")
     <div class="content-header">
