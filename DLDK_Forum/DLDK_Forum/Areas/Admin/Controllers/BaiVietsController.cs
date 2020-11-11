@@ -154,11 +154,7 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed_2()
         {
             string id = Request.Form["check"].ToString();
-            BaiViet baiViet = db.BaiViets.Find(id);
-            var BL = baiViet.BinhLuans.ToList();
-            db.BinhLuans.RemoveRange(BL);
-            var CX = baiViet.CamXucs.ToList();
-            db.CamXucs.RemoveRange(CX);
+            BaiViet baiViet = db.BaiViets.Find(id);            
             db.BaiViets.Remove(baiViet);
             db.SaveChanges();
             return RedirectToAction("QuanLyBaiViet","QuanLy");

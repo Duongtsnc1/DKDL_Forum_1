@@ -20,12 +20,16 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         public ActionResult QuanLyNguoiDung()
         {
             ViewBag.DSND = db.NguoiDungs.ToList();
+            ViewBag.Admin = db.NguoiDungs.Where(a => a.QuyenAdmin.ToString() == "admin").ToList();
+            ViewBag.NotAdmin = db.NguoiDungs.Where(a => a.QuyenAdmin.ToString() == "Anonymous").ToList();
             return View();
         }
         public ActionResult QuanLyBaiViet()
         {
             ViewBag.DSBV = db.BaiViets.ToList();    
-            ViewBag.DSCD = db.ChuDes.ToList();            
+            ViewBag.DSCD = db.ChuDes.ToList();
+            ViewBag.ChuaDuyet = db.BaiViets.Where(a => a.TinhTrang == 0).ToList();
+            ViewBag.DaDuyet = db.BaiViets.Where(a => a.TinhTrang == 1).ToList();
             return View();
         }
         [HttpPost]  
@@ -39,6 +43,8 @@ namespace DLDK_Forum.Areas.Admin.Controllers
             ViewBag.BVCD = db.BaiViets.Where(a => a.MaChuDe == cd.MaChuDe).ToList();
             ViewBag.DSBV = db.BaiViets.ToList();
             ViewBag.DSCD = db.ChuDes.ToList();
+            ViewBag.ChuaDuyet = db.BaiViets.Where(a => a.MaChuDe == cd.MaChuDe).Where(a => a.TinhTrang == 0).ToList();
+            ViewBag.DaDuyet = db.BaiViets.Where(a => a.MaChuDe == cd.MaChuDe).Where(a => a.TinhTrang == 1).ToList();
             return View(cd);
         }
         public ActionResult QuanLyPhanHoi()

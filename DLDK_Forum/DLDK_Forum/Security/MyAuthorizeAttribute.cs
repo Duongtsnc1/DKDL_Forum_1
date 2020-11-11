@@ -6,7 +6,6 @@ using System.Security;
 using System.Web.Mvc;
 using DLDK_Forum.Models;
 using System.Web.Routing;
-using System.Web.Mvc;
 namespace DLDK_Forum.Security
 {
     [AttributeUsage(AttributeTargets.Class|AttributeTargets.Method)]
