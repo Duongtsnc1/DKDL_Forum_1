@@ -126,21 +126,28 @@ namespace DLDK_Forum.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed_2()
         {
             string id = Request.Form["check"].ToString();
-            NguoiDung nguoiDung = db.NguoiDungs.Find(id);
-            var BV = nguoiDung.BaiViets.ToList();
-            List<BinhLuan> BL=new List<BinhLuan>();
-            List<CamXuc> BV_CX = new List<CamXuc>();
-            foreach(var item in BV)
-            {
-                BL.AddRange(item.BinhLuans);
-                BV_CX.AddRange(item.CamXucs);
-            }
-            db.CamXucs.RemoveRange(BV_CX);
-            db.BinhLuans.RemoveRange(BL);
-            db.BaiViets.RemoveRange(BV);
-            var CX = nguoiDung.CamXucs.ToList();
-            db.CamXucs.RemoveRange(CX);
+            NguoiDung nguoiDung = db.NguoiDungs.Find(id);            
             db.NguoiDungs.Remove(nguoiDung);
+            db.SaveChanges();
+            return RedirectToAction("QuanLyNguoiDung", "QuanLy");
+        }
+        //new action 11/11/2020
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit_BoDuyet()
+        {
+            var mand = Request.Form["btnCheck"].ToString();
+            db.NguoiDungs.Single(a => a.Email == mand).QuyenAdmin = "Anonymous";
+            db.SaveChanges();
+            return RedirectToAction("QuanLyNguoiDung", "QuanLy");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit_Duyet()
+        {
+            var mand = Request.Form["btnCheck"].ToString();
+            db.NguoiDungs.Single(a => a.Email == mand).QuyenAdmin = "admin";
             db.SaveChanges();
             return RedirectToAction("QuanLyNguoiDung", "QuanLy");
         }

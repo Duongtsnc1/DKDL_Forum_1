@@ -6,6 +6,8 @@
 @{
     List<BaiViet> dsbv = ViewBag.DSBV;
     List<ChuDe> dscd = ViewBag.DSCD;
+    List<BaiViet> chuaduyet = ViewBag.ChuaDuyet;
+    List<BaiViet> daduyet = ViewBag.DaDuyet;
 }
 
 <!-- Content Header (Page header) -->
@@ -78,102 +80,165 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in dsbv)
+                @foreach (var item in chuaduyet)
                 {
-                <tr>
-                    <td>@item.MaBaiViet</td>
-                    <td>@item.ChuDe.TenChuDe</td>
-                    <td>
-                        <a href="/Post/Single_Post?idPost=@item.MaBaiViet">
-                            @item.TieuDe
-                        </a>
-                    </td>
-                    <td>@item.NguoiDung.HoTen</td>
-                    <td>@item.ThoiGian</td>
-                    @if (@item.TinhTrang == 1)
-                    {
-                        using (Html.BeginForm("Edit_BoDuyet", "BaiViets", FormMethod.Post))
+                    <tr>
+                        <td>@item.MaBaiViet</td>
+                        <td>@item.ChuDe.TenChuDe</td>
+                        <td>
+                            <a href="/Post/Single_Post?idPost=@item.MaBaiViet">
+                                @item.TieuDe
+                            </a>
+                        </td>
+                        <td>@item.NguoiDung.HoTen</td>
+                        <td>@item.ThoiGian</td>
+                        @using (Html.BeginForm("Edit_Duyet", "BaiViets", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            @*<td><input type="checkbox" checked="checked" name="abc" value="@item.MaBaiViet"></td>
-                <td><input type="submit" class="btn btn-info btn-lg" value="Bỏ duyệt"></td>*@
+                            <td><button type="submit" class="btn btn-info btn-lg btn-admin btn-duyet" name="btnCheck" value="@item.MaBaiViet">Duyệt</button></td>
+
+                        }
+
+                        <td>
+
+                            <!--Modal example-->
+                            <div class="container">
+                                <!-- Trigger the modal with a button -->
+                                @{
+                                    var str = "#myModal" + @item.MaBaiViet.ToString();
+                                    var strid = "myModal" + @item.MaBaiViet.ToString();
+                                }
+                                <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal" data-target=@str>Xoá</button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id=@strid role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                                <h4 class="modal-title">Bạn có muốn xoá bài viết???</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>@item.TieuDe</h5>
+                                                @if (item.Noidung.Length <= 65)
+                                                {
+                                                    <p>
+                                                        @item.Noidung...
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p>
+
+                                                        @item.Noidung.Substring(0, 60)...
+                                                    </p>
+                                                }
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                @using (Html.BeginForm("DeleteConfirmed_2", "BaiViets", FormMethod.Post))
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <div class="form-actions no-color">
+                                                        <input type="text" name="check" value=@item.MaBaiViet hidden />
+                                                        <input type="submit" value="Delete" class="btn btn-default" />
+
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--End Modal-->
+                        </td>
+                    </tr>
+                }
+                @foreach (var item in daduyet)
+                {
+                    <tr>
+                        <td>@item.MaBaiViet</td>
+                        <td>@item.ChuDe.TenChuDe</td>
+                        <td>
+                            <a href="/Post/Single_Post?idPost=@item.MaBaiViet">
+                                @item.TieuDe
+                            </a>
+                        </td>
+                        <td>@item.NguoiDung.HoTen</td>
+                        <td>@item.ThoiGian</td>
+                        @using (Html.BeginForm("Edit_BoDuyet", "BaiViets", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
                             <td><button type="submit" class="btn btn-info btn-lg btn-admin" name="btnCheck" value="@item.MaBaiViet">Bỏ duyệt</button></td>
 
                         }
 
+                        <td>
 
-                    }
-                    else
-                    {
-                        using (Html.BeginForm("Edit_Duyet", "BaiViets", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            @*<td><input type="checkbox" name="khanh" value="@item.MaBaiViet"></td>
-                <td><input type="submit" class="btn btn-info btn-lg" value="Duyệt"></td>*@
-                            <td><button type="submit" class="btn btn-info btn-lg btn-admin btn-duyet" name="btnCheck" value="@item.MaBaiViet">Duyệt</button></td>
+                            <!--Modal example-->
+                            <div class="container">
+                                <!-- Trigger the modal with a button -->
+                                @{
+                                    var str = "#myModal" + @item.MaBaiViet.ToString();
+                                    var strid = "myModal" + @item.MaBaiViet.ToString();
+                                }
+                                <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal" data-target=@str>Xoá</button>
 
-                        }
-                    }
-                    <td>
+                                <!-- Modal -->
+                                <div class="modal fade" id=@strid role="dialog">
+                                    <div class="modal-dialog">
 
-                        <!--Modal example-->
-                        <div class="container">
-                            <!-- Trigger the modal with a button -->
-                            @{
-                                var str = "#myModal" + @item.MaBaiViet.ToString();
-                                var strid = "myModal" + @item.MaBaiViet.ToString();
-                            }
-                            <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal" data-target=@str>Xoá</button>
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                                <h4 class="modal-title">Bạn có muốn xoá bài viết???</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>@item.TieuDe</h5>
+                                                @if (item.Noidung.Length <= 65)
+                                                {
+                                                    <p>
+                                                        @item.Noidung...
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id=@strid role="dialog">
-                                <div class="modal-dialog">
+                                                        @item.Noidung.Substring(0, 60)...
+                                                    </p>
+                                                }
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                @using (Html.BeginForm("DeleteConfirmed_2", "BaiViets", FormMethod.Post))
+                                                {
+                                                    @Html.AntiForgeryToken()
 
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                            <h4 class="modal-title">Bạn có muốn xoá bài viết???</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h5>@item.TieuDe</h5>
-                                            @if (item.Noidung.Length <= 65)
-                                            {
-                                                <p>
-                                                    @item.Noidung...
-                                                </p>
-                                            }
-                                            else
-                                            {
-                                                <p>
+                                                    <div class="form-actions no-color">
+                                                        <input type="text" name="check" value=@item.MaBaiViet hidden />
+                                                        <input type="submit" value="Delete" class="btn btn-default" />
 
-                                                    @item.Noidung.Substring(0, 60)...
-                                                </p>
-                                            }
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            @using (Html.BeginForm("DeleteConfirmed_2", "BaiViets", FormMethod.Post))
-                                            {
-                                                @Html.AntiForgeryToken()
+                                                    </div>
+                                                }
+                                            </div>
 
-                                                <div class="form-actions no-color">
-                                                    <input type="text" name="check" value=@item.MaBaiViet hidden />
-                                                    <input type="submit" value="Delete" class="btn btn-default" />
-
-                                                </div>
-                                            }
                                         </div>
 
                                     </div>
-
                                 </div>
-                            </div>
 
-                        </div>
-                        <!--End Modal-->
-                    </td>
-                </tr>
+                            </div>
+                            <!--End Modal-->
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
