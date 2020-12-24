@@ -14,7 +14,7 @@ else {
         <div class="post">
             <div class="post-left">
                 <div class="post-image">
-                    <img src="~/@item.DuongDanHinhAnh" alt="">
+                    <a href="/Post/Single_Post?idPost=@item.MaBaiViet" class="read"> <img src="~/@item.DuongDanHinhAnh" alt=""></a>
                 </div>
                 <div class="post-react">
                     @{
@@ -82,6 +82,7 @@ else {
                 <div class="description">
                     <h2 class="title">
                         @item.TieuDe
+                        @*<a href="/Post/Single_Post?idPost=@item.MaBaiViet" class="read">@item.TieuDe</a>*@
                     </h2>
                     @if (item.Noidung.Length <= 200)
                     {
