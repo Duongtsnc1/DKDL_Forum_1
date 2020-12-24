@@ -33,7 +33,7 @@ namespace DLDK_Forum.Controllers
             }
             else if (idChuDe == string.Empty && search != string.Empty)
             {
-                  result = BV.Where(s => s.TieuDe.Contains(search)).OrderBy(s => s.ThoiGian).ToList();
+                  result = BV.Where(s => s.TieuDe.Contains(search)||s.Noidung.Contains(search)||s.NguoiDung.HoTen.Contains(search)).OrderBy(s => s.ThoiGian).ToList();
             }
             else if (idChuDe == string.Empty)
             {
@@ -41,7 +41,7 @@ namespace DLDK_Forum.Controllers
             }
             else
             {
-                  result = BV.Where(s => s.MaChuDe == idChuDe & s.TieuDe.Contains(search)).OrderBy(s => s.ThoiGian).ToList();
+                  result = BV.Where(s => s.MaChuDe == idChuDe & (s.TieuDe.Contains(search) || s.Noidung.Contains(search) || s.NguoiDung.HoTen.Contains(search))).OrderBy(s => s.ThoiGian).ToList();
             }            
             return View(result.Where(s=>s.TinhTrang==1).Reverse());
         }
