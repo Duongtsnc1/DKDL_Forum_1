@@ -54,7 +54,7 @@
                 @if (Session["User"] != null && (string)Session["permission"] == "admin")
                 {
                     <div class="btn-container">
-                        <a href="" class="btn">Quản lý(admin)</a>
+                        <a href="/Admin/QuanLy/Index" class="btn">Quản lý(admin)</a>
                     </div>
                 }
                 @if (Session["User"] != null && ((NguoiDung)Session["User"]).Email == ND_LA.Email)

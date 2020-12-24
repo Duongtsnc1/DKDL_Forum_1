@@ -21,8 +21,8 @@ namespace DLDK_Forum.Controllers
         {
             return View();
         }
-       
-        public ActionResult post(string idChuDe = "", string search = "")
+       [ChildActionOnly]
+        public PartialViewResult post(string idChuDe = "", string search = "")
         {
            // ViewBag["id"] = idChuDe;
             var BV = MyDBContext.BaiViets.Where(s => s.TinhTrang == 1);
@@ -43,13 +43,14 @@ namespace DLDK_Forum.Controllers
             {
                   result = BV.Where(s => s.MaChuDe == idChuDe & (s.TieuDe.Contains(search) || s.Noidung.Contains(search) || s.NguoiDung.HoTen.Contains(search))).OrderBy(s => s.ThoiGian).ToList();
             }            
-            return View(result.Where(s=>s.TinhTrang==1).Reverse());
+            return PartialView(result.Where(s=>s.TinhTrang==1).Reverse());
         }
-       
-        public ActionResult TableOfContents()
+
+       [ChildActionOnly]
+        public PartialViewResult TableOfContents()
         {
             List<ChuDe> Topics = MyDBContext.ChuDes.Where(s => s.TenChuDe != "Khác").OrderBy(s => s.TenChuDe).ToList();
-            return View(Topics);
+            return PartialView(Topics);
         }
         public ActionResult Single_Post(string idPost="")
         {

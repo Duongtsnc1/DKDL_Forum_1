@@ -130,22 +130,22 @@ namespace DLDK_Forum.Controllers
             ViewBag.nguoidung = TaiKhoan;
             return View();
         }
-   
-        public ActionResult List_Topic()
+       [ChildActionOnly]
+        public PartialViewResult List_Topic()
         {
-            return View();
+            return PartialView();
         }
-     
-        public ActionResult HotAccount()
+        [ChildActionOnly]
+        public PartialViewResult HotAccount()
         {
             NguoiDungDAO DAO = new NguoiDungDAO();
-            return View(DAO.GetHotNguoiDung().GetRange(0,4));
+            return PartialView(DAO.GetHotNguoiDung().GetRange(0,4));
         }
-        
-        public ActionResult HotBaiViet()
+        [ChildActionOnly]
+         public PartialViewResult HotBaiViet()
         {
             BaiVietDAO DAO = new BaiVietDAO();
-            return View(DAO.GetHotBaiViets().GetRange(0, 4));
+            return PartialView(DAO.GetHotBaiViets().GetRange(0, 4));
         }
         public ActionResult tesst()
         {
