@@ -11,7 +11,7 @@ namespace DLDK_Forum.Models
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Email { get; set; }
 
         [Required]

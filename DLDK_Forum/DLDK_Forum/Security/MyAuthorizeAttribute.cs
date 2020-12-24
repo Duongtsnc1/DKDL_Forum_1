@@ -16,14 +16,13 @@ namespace DLDK_Forum.Security
             
                 if (SessionPersister.UserName==null)
                 {
-                //filterContext.Controller.ViewData["E"] = "Bạn không thể truy cập đường dẫn";
                     filterContext.Result = new RedirectResult("/Home/Home");
                 }
                 else
                 {                    
                     MyPrincipal mp = new MyPrincipal(SessionPersister.UserName);
-                if (!mp.IsInRole(Roles))
-                    filterContext.Result = new RedirectResult("/Home/Login_Logout");
+                    if (!mp.IsInRole(Roles))
+                        filterContext.Result = new RedirectResult("/Home/Login_Logout");
                 }
             
         }
