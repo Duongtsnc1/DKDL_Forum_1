@@ -9,6 +9,7 @@
     List<NguoiDung> admin = ViewBag.Admin;
     List<NguoiDung> notadmin = ViewBag.NotAdmin;
 }
+@{ var i = 0;}
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -67,77 +68,80 @@
             <tbody>
                 @foreach (var item in notadmin)
                 {
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            <a href="/Home/Account?idAccount=@item.Email">
-                                @item.HoTen
-                            </a>
-                        </td>
-                        <td> @item.Email </td>
-                        @*Here is new code 11/11*@
-                        @using (Html.BeginForm("Edit_Duyet", "NguoiDungs", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            <td><button type="submit" class="btn btn-info btn-lg btn-admin btn-duyet" name="btnCheck" value="@item.Email">Duyệt</button></td>
+                    i++;
+                <tr>                    
+                    <td>@i</td>
+                    <td>
+                        <a href="/Home/Account?idAccount=@item.Email">
+                            @item.HoTen
+                        </a>
+                    </td>
+                    <td> @item.Email </td>
+                    @*Here is new code 11/11*@
+                    @using (Html.BeginForm("Edit_Duyet", "NguoiDungs", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <td><button type="submit" class="btn btn-info btn-lg btn-admin btn-duyet" name="btnCheck" value="@item.Email">Duyệt</button></td>
 
-                        }
-                        <td>
-                            <!--Modal example-->
-                            <div class="container">
-                                <!-- Trigger the modal with a button -->
-                                @{
-                                    var email = @item.Email.ToString().Split('@');
-                                    var s = "#myModal" + email[0];
-                                    var sid = "myModal" + email[0];
-                                }
-                                <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal" data-target=@s>Xoá</button>
+                    }
+                    <td>
+                        <!--Modal example-->
+                        <div class="container">
+                            <!-- Trigger the modal with a button -->
+                            @{
+                                var email = @item.Email.ToString().Split('@');
+                                var s = "#myModal" + email[0];
+                                var sid = "myModal" + email[0];
+                            }
+                            <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal" data-target=@s>Xoá</button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id=@sid role="dialog">
-                                    <div class="modal-dialog">
+                            <!-- Modal -->
+                            <div class="modal fade" id=@sid role="dialog">
+                                <div class="modal-dialog">
 
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                                <h4 class="modal-title">Bạn có muốn xoá tài khoản???</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h5>@item.HoTen</h5>
-                                                <p>@item.Email</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                @using (Html.BeginForm("DeleteConfirmed_2", "NguoiDungs", FormMethod.Post))
-                                                {
-                                                    @Html.AntiForgeryToken()
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                            <h4 class="modal-title">Bạn có muốn xoá tài khoản???</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h5>@item.HoTen</h5>
+                                            <p>@item.Email</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            @using (Html.BeginForm("DeleteConfirmed_2", "NguoiDungs", FormMethod.Post))
+                                            {
+                                                @Html.AntiForgeryToken()
 
-                                                    <div class="form-actions no-color">
-                                                        <input type="text" name="check" value=@item.Email hidden />
-                                                        <input type="submit" value="Delete" class="btn btn-default" />
+                                                <div class="form-actions no-color">
+                                                    <input type="text" name="check" value=@item.Email hidden />
+                                                    <input type="submit" value="Delete" class="btn btn-default" />
 
-                                                    </div>
-                                                }
-                                            </div>
-
+                                                </div>
+                                            }
                                         </div>
 
                                     </div>
+
                                 </div>
-
                             </div>
-                            <!--End Modal-->
-                        </td>
 
-                    </tr>
+                        </div>
+                        <!--End Modal-->
+                    </td>
+
+                </tr>
+                    
 
 
-                }
+                                    }
                 @foreach (var item in admin)
                 {
+                    i++;
                     <tr>
-                        <td>1</td>
+                        <td>@i</td>
                         <td>
                             <a href="/Home/Account?idAccount=@item.Email">
                                 @item.HoTen
@@ -211,3 +215,4 @@
 </div>
 <!-- /.card -->
 <!-- /.content -->
+

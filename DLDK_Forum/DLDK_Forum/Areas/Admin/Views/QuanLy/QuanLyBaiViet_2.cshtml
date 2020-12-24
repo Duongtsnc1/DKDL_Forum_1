@@ -11,6 +11,7 @@
     List<BaiViet> chuaduyet = ViewBag.ChuaDuyet;
     List<BaiViet> daduyet = ViewBag.DaDuyet;
 }
+@{ var i = 0;}
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -35,27 +36,28 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Các Bài Viết thuộc chủ đề @Model.MaChuDe </h3>
+        <h3 class="card-title">Các Bài Viết thuộc chủ đề @Model.TenChuDe </h3>
 
         @*<div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
     </div>
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0" style="height: 600px;">
         <table class="table table-head-fixed text-nowrap">
             <thead>
                 <tr>
+                    <th>STT</th>
                     <th>Mã bài viết</th>
-                    <th>Chủ đề</th>                    
+                    <th>Chủ đề</th>
                     <th>Tiêu đề</th>
                     <th>Tác giả</th>
                     <th>Ngày</th>
@@ -66,7 +68,9 @@
             <tbody>
                 @foreach (var item in chuaduyet)
                 {
+                    i++;
                     <tr>
+                        <td>@i</td>
                         <td>@item.MaBaiViet</td>
                         <td>@item.ChuDe.TenChuDe</td>
                         <td>
@@ -146,7 +150,9 @@
                 }
                 @foreach (var item in daduyet)
                 {
+                    i++;
                     <tr>
+                        <td>@i</td>
                         <td>@item.MaBaiViet</td>
                         <td>@item.ChuDe.TenChuDe</td>
                         <td>
@@ -233,4 +239,3 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
-

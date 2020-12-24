@@ -8,6 +8,7 @@
 @{
     List<PhanHoi> dsph = ViewBag.DSPH;
 }
+@{ var i = 0;}
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -39,16 +40,16 @@
         <h3 class="card-title">Các phản hổi</h3>
 
         @*<div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
     </div>
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0" style="height: 600px;">
@@ -66,19 +67,20 @@
             <tbody>
                 @foreach (var item in dsph)
                 {
-                <tr>
-                    <td>1</td>
-                    <td> @item.HoTen </td>
-                    <td>@item.Email</td>
-                    <td>@item.ThoiGian</td>
-                    <td>@item.NoiDung</td>
-                    <td>
-                        @*<a href="">
-            Delete
-        </a>*@
-                        <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal">Xoá</button>
-                    </td>
-                </tr>
+                    i++;
+                    <tr>
+                        <td>@i</td>
+                        <td> @item.HoTen </td>
+                        <td>@item.Email</td>
+                        <td>@item.ThoiGian</td>
+                        <td>@item.NoiDung</td>
+                        <td>
+                            @*<a href="">
+                                    Delete
+                                </a>*@
+                            <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal">Xoá</button>
+                        </td>
+                    </tr>
 
                 }
             </tbody>
