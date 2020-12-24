@@ -9,7 +9,7 @@
     List<BaiViet> chuaduyet = ViewBag.ChuaDuyet;
     List<BaiViet> daduyet = ViewBag.DaDuyet;
 }
-
+@{ var stt = 0;}
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -53,6 +53,7 @@
         <table class="table table-head-fixed text-nowrap">
             <thead>
                 <tr>
+                    <th>STT</th>
                     <th>Mã bài viết</th>
                     @*<th>Chủ đề</th>*@
                     <th>
@@ -82,7 +83,9 @@
             <tbody>
                 @foreach (var item in chuaduyet)
                 {
+                    stt++;
                     <tr>
+                        <td>@stt</td>
                         <td>@item.MaBaiViet</td>
                         <td>@item.ChuDe.TenChuDe</td>
                         <td>
@@ -162,7 +165,9 @@
                 }
                 @foreach (var item in daduyet)
                 {
+                    stt++;
                     <tr>
+                        <td>@stt</td>
                         <td>@item.MaBaiViet</td>
                         <td>@item.ChuDe.TenChuDe</td>
                         <td>
