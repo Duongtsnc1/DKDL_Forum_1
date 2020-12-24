@@ -452,11 +452,13 @@ header .container {
     padding:5px;
     padding-left:15px;
     display:block;
+    background:unset;
 }
 
 .col-3 ul li {
     width: 100%;
     border: 1px solid #555;
+    overflow:hidden;
 }
 
 .table-content {

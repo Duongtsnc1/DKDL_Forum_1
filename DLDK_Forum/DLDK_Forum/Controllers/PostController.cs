@@ -47,8 +47,9 @@ namespace DLDK_Forum.Controllers
         }
 
        [ChildActionOnly]
-        public PartialViewResult TableOfContents()
+        public PartialViewResult TableOfContents(string idChuDe = "")
         {
+            ViewBag.ID = idChuDe;
             List<ChuDe> Topics = MyDBContext.ChuDes.Where(s => s.TenChuDe != "Khác").OrderBy(s => s.TenChuDe).ToList();
             return PartialView(Topics);
         }
@@ -106,7 +107,7 @@ namespace DLDK_Forum.Controllers
             }
             MyDBContext.BaiViets.Add(BV);
             MyDBContext.SaveChanges();
-            return Redirect("/Post/Single_Post?idPost=" + BV.MaBaiViet);
+            return Redirect("/Home/Account?idAccount=" + BV.Email);
         }
         [HttpPost]
         public ActionResult binhluan(string NoiDung, string idPost)

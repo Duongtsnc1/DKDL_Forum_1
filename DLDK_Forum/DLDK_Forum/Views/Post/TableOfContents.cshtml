@@ -1,24 +1,42 @@
 ﻿@model IEnumerable<DLDK_Forum.Models.ChuDe>
 @{
     Layout = null;
+    var ID = ViewBag.ID;
 }
+
 
 <div class="table-content">
     <ul>
         <li>
-            <a id="CD" class="TC" href="/Post/ListPost?idChuDe=" onclick="ngu('CD')">Tất cả</a>
+            <a id="CD" class="TC" href="/Post/ListPost?idChuDe=" >Tất cả</a>
         </li>
         @foreach (var item in Model)
         {
             <li>
-                <a id="@item.MaChuDe" class="TC" href="/Post/ListPost?idChuDe=@item.MaChuDe" onclick="ngu('@item.MaChuDe.ToString()')">@item.TenChuDe</a>
+                <a id="@item.MaChuDe" class="TC" href="/Post/ListPost?idChuDe=@item.MaChuDe" >@item.TenChuDe</a>
             </li>
         }
         <li>
-            <a id="CD00" class="TC" href="/Post/ListPost?idChuDe=CD00" onclick="ngu('CD00')">Khác</a>
+            <a id="CD00" class="TC" href="/Post/ListPost?idChuDe=CD00" >Khác</a>
         </li> 
     </ul>
 </div>
 <div class="search">
    
 </div>
+<script>
+    var classA = document.getElementsByClassName("TC");
+
+    function all() {
+        for (var item of classA) {
+            item.style.background = "white";
+        }
+
+    }
+    all();
+    var ID = "CD";
+    if ("@ID" !== "") {
+        ID = "@ID";
+    }
+    document.getElementById(ID).style.background = "#27c0c0";
+</script>

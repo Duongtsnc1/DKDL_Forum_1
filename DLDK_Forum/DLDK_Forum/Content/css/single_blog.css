@@ -268,10 +268,45 @@ header #logo {
     flex-basis: 33.33%;
     width: 100%;
 }
-
-.image-container {
-    margin-bottom: 40px;
+.same-author {
+    width: 60%;
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+.con-same-author {
+    border: 1px solid #000;
+    margin-top: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor:pointer;
+    /* padding: 5px; */
+    box-shadow: 5px 5px 10px rgb(116, 108, 108);
+}
+
+.boxa-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+    .boxa-image img {
+        width: 100%;
+    }
+
+.boxa-title {
+    padding: 5px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight:700;
+}
+    .boxa-title p{
+        text-align:center;
+    }
+    .image-container {
+        margin-bottom: 40px;
+    }
 
 .image-container img {
     width: 150px;
