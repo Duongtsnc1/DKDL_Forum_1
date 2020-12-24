@@ -431,12 +431,11 @@ header .container {
 
 .col-3 ul li {
     position: relative;
-    /* display: inline; */
     margin: 15px 0;
     border-radius: 0 10px 10px 0;
 }
 
-.col-3 ul li::before {
+/*.col-3 ul li::before {
     content: "";
     width: 20px;
     height: 20px;
@@ -445,28 +444,33 @@ header .container {
     position: absolute;
     top: -5px;
     left: -5px;
-}
+}*/
 
 .col-3 ul li a {
-    margin-left: 20px;
+    
     color: #000;
+    padding:5px;
+    padding-left:15px;
+    display:block;
 }
 
 .col-3 ul li {
     width: 100%;
-    /* box-shadow: 0 0 10px #555; */
-    padding: 5px;
-    cursor: pointer;
     border: 1px solid #555;
 }
 
 .table-content {
     padding: 10px;
     border: 1px solid #555;
-    /* margin-top: 60px; */
+}
+.table-content ul li {
+        
+        cursor:pointer;
 }
 
-
+.TC:hover {
+    background: #9ec9f4;
+}
 /* footer */
 
 .footer {

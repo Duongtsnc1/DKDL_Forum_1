@@ -4,6 +4,16 @@
 @model IEnumerable<DLDK_Forum.Models.BaiViet>
 @{
     Layout = null;
+    //string id;
+    //if ((string)ViewBag["id"] != null)
+    //{
+    //     id = (string)ViewBag["id"];
+    //}
+    //else
+    //{
+    //    id = "CD"           
+    //}
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -23,15 +33,27 @@
             <div class="main">
                 <!-- <div class="col-1"></div> -->
                 <div class="col-2">
-                    @Html.Action("post","Post")
+                    @Html.Action("post", "Post")
                 </div>
                 <div class="col-3">
-                    @Html.Action("TableOfContents","Post")
+                    @Html.Action("TableOfContents", "Post")
                 </div>
             </div>
         </div>
     </div>
     @Html.Partial("~/Views/Shared/footer.cshtml")
+<script @*src="~/Content/js/single_blog.js"*@>
+
+
+    @*function ngu(id) {
+        var classA = document.getElementsByClassName("TC");
+        for (var item of classA) {
+            item.style.color = "black";
+        }
+        document.getElementById(id).style.color = "red";
+    }
+    ngu('@id');*@
+</script>
 
 </body>
 

@@ -24,6 +24,7 @@ namespace DLDK_Forum.Controllers
        
         public ActionResult post(string idChuDe = "", string search = "")
         {
+           // ViewBag["id"] = idChuDe;
             var BV = MyDBContext.BaiViets.Where(s => s.TinhTrang == 1);
             List<BaiViet> result = new List<BaiViet>();
             if (search == string.Empty && idChuDe != string.Empty)
@@ -202,6 +203,13 @@ namespace DLDK_Forum.Controllers
             }
             MyDBContext.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
+        }
+        [HttpPost]
+        public ActionResult Delete_cmt(string idBaiViet,string idNguoiDung)
+        {
+            MyDBContext.BinhLuans.Remove(MyDBContext.BinhLuans.SingleOrDefault(s => s.Email == idNguoiDung && s.MaBaiViet == idBaiViet));
+            MyDBContext.SaveChanges();
+            return Redirect("/Post/Single_Post?idPost="+idBaiViet);
         }
     }
 }

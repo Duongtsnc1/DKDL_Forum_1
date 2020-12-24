@@ -178,12 +178,14 @@ header #logo {
     box-shadow: 5px -5px 20px rgb(156, 149, 149);
     padding: 10px;
     border-radius: 40px 0 40px 40px;
+    line-height:25px;
 }
 
 .comment-body h4 {
     font-size: 20px;
     margin-bottom: 10px;
     cursor: pointer;
+    display:inline;
 }
 
 .comment-body {
@@ -216,7 +218,19 @@ header #logo {
     height: 50px;
     border-radius: 50%;
 }
+.delete_cmt button {
+    outline: none;
+    border: unset;
+    background: none;
+    position: relative;
+    cursor: pointer;
+    font-size: 15px;
+}
 
+
+.delete_cmt button:hover {
+   color: rgb(255, 166, 166);
+}
 .new-comment {
     width: 100%;
     position: relative;
@@ -268,7 +282,13 @@ header #logo {
 .author h3 {
     margin-bottom: 20px;
 }
-
+.author p {
+    max-height: 150px;
+    overflow: auto;
+    font-family: 'Charmonman', cursive;
+    font-size: 15px;
+    
+}
 .post-react {
     width: 100%;
     padding: 5px;

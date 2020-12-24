@@ -6,16 +6,19 @@
 <div class="table-content">
     <ul>
         <li>
-            <a href="/Post/ListPost?idChuDe=">Tất cả</a>
+            <a id="CD" class="TC" href="/Post/ListPost?idChuDe=" onclick="ngu('CD')">Tất cả</a>
         </li>
         @foreach (var item in Model)
         {
             <li>
-                <a href="/Post/ListPost?idChuDe=@item.MaChuDe">@item.TenChuDe</a>
+                <a id="@item.MaChuDe" class="TC" href="/Post/ListPost?idChuDe=@item.MaChuDe" onclick="ngu('@item.MaChuDe.ToString()')">@item.TenChuDe</a>
             </li>
         }
         <li>
-            <a href="/Post/ListPost?idChuDe=CD00">Khác</a>
-        </li>
+            <a id="CD00" class="TC" href="/Post/ListPost?idChuDe=CD00" onclick="ngu('CD00')">Khác</a>
+        </li> 
     </ul>
+</div>
+<div class="search">
+   
 </div>

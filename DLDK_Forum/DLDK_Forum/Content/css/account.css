@@ -177,8 +177,11 @@ a {
     margin-right: 20px;
 }
 .account-detail p {
-    max-height: 80px;
+    max-height: 150px;
     overflow: auto;
+    font-family: 'Charmonman', cursive;
+    font-size: 18px;
+    color: rgb(7 44 146);
 }
 .account-detail p::first-letter {
     margin-left: 20px;
@@ -244,7 +247,14 @@ a {
     font-weight: 600;
     color: rgb(95, 95, 95);
 }
+    .Interactive p span:nth-child(1) {
+        margin-left: 20px;
+    }
 
+    .Interactive p span:nth-child(2) {
+        margin-right: 20px;
+        float: right;
+    }
 .main .col-2 {
     position: relative;
     height: 1000px;
