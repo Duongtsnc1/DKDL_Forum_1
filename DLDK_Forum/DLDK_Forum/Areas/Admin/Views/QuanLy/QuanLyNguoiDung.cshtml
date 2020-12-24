@@ -8,7 +8,9 @@
     List<NguoiDung> dsnd = ViewBag.DSND;
     List<NguoiDung> admin = ViewBag.Admin;
     List<NguoiDung> notadmin = ViewBag.NotAdmin;
+    List<BaiViet> dsbv = ViewBag.DSBV;
 }
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -39,7 +41,7 @@
     <div class="card-header">
         <h3 class="card-title">Các người dùng</h3>
 
-        <div class="card-tools">
+        @*<div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
@@ -49,7 +51,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0" style="height: 600px;">
@@ -89,9 +91,11 @@
                                 @{
                                     var email = @item.Email.ToString().Split('@');
                                     var s = "#myModal" + email[0];
-                                    var sid = "myModal" + email[0];
+                                    var sid = "myModal" + email[0];                                    
+
                                 }
                                 <button type="button" class="btn btn-info btn-lg btn-xoa" data-toggle="modal" data-target=@s>Xoá</button>
+                                
 
                                 <!-- Modal -->
                                 <div class="modal fade" id=@sid role="dialog">
@@ -106,6 +110,7 @@
                                             <div class="modal-body">
                                                 <h5>@item.HoTen</h5>
                                                 <p>@item.Email</p>
+                                                <p>Số bài viết: 2</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

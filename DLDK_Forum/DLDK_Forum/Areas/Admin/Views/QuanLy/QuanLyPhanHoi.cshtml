@@ -8,6 +8,7 @@
 @{
     List<PhanHoi> dsph = ViewBag.DSPH;
 }
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -38,7 +39,7 @@
     <div class="card-header">
         <h3 class="card-title">Các phản hổi</h3>
 
-        <div class="card-tools">
+        @*<div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
@@ -48,14 +49,14 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
     <!-- /.card-header -->
     <div class="card-body table-responsive p-0" style="height: 600px;">
         <table class="table table-head-fixed text-nowrap">
             <thead>
                 <tr>
-                    <th>STT</th>
+                    @*<th>STT</th>*@
                     <th>Tên người dùng</th>
                     <th>Email</th>
                     <th>Ngày</th>
@@ -67,17 +68,18 @@
                 @foreach (var item in dsph)
                 {
                 <tr>
-                    <td>1</td>
+                    @*<td>1</td>*@
                     <td> @item.HoTen </td>
                     <td>@item.Email</td>
                     <td>@item.ThoiGian</td>
                     <td>@item.NoiDung</td>
-                    <td>
+                    @*<td>
                         <a href="">
                             Delete
                         </a>
-                    </td>
+                    </td>*@
                 </tr>
+                  
 
                 }
             </tbody>

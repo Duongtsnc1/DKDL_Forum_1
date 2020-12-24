@@ -22,6 +22,8 @@ namespace DLDK_Forum.Areas.Admin.Controllers
             ViewBag.DSND = db.NguoiDungs.ToList();
             ViewBag.Admin = db.NguoiDungs.Where(a => a.QuyenAdmin.ToString() == "admin").ToList();
             ViewBag.NotAdmin = db.NguoiDungs.Where(a => a.QuyenAdmin.ToString() == "Anonymous").ToList();
+            //24.12
+            ViewBag.DSBV = db.BaiViets.ToList();
             return View();
         }
         public ActionResult QuanLyBaiViet()
